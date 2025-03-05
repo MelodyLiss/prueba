@@ -1,131 +1,158 @@
-const mostrarPreguntaEmparejamiento = () => {
-    const pregunta = datosPreguntas.emparejamiento[preguntaActual];
-    const contenedorPregunta = document.getElementById('question-container');
+// main.js
 
-    // Crear un array de respuestas y desordenarlo
-    const respuestasDesordenadas = [...pregunta.pares]
-        .map(par => par.respuesta)
-        .sort(() => Math.random() - 0.5);
+let preguntaActual = 0;
+let totalPreguntas = 0;
+let nombreJugador = '';
+let puntaje = 0;
+let datosPreguntas = {
+    alternativas: [],
+    completarOracion: [],
+    emparejamiento: [],
+    ordenarPalabra: [],
+    verdaderoFalso: { preguntas: [] }
+};
 
-    const preguntaHTML = `
-        <div class="emparejamiento-container">
-            <h2 class="tema-titulo">${pregunta.tema}</h2>
-            <div class="conceptos-fila">
-                ${pregunta.pares.map((par, index) => `
-                    <div class="concepto-container">
-                        <div class="concepto-item">${par.concepto}</div>
-                        <div class="respuesta-slot" draggable="false"></div>
-                    </div>
-                `).join('')}
-            </div>
-            <div class="respuestas-columna">
-                ${respuestasDesordenadas.map(respuesta => `
-                    <div class="respuesta-item" draggable="true" data-respuesta="${respuesta}">
-                        ${respuesta}
-                    </div>
-                `).join('')}
-            </div>
-            <button class="confirmar-btn" onclick="verificarEmparejamiento()">Confirmar</button>
-            <div id="resultado" class="resultado"></div>
-        </div>
-    `;
-    contenedorPregunta.innerHTML = preguntaHTML;
-
-    // Configurar eventos de drag and drop
-    const slots = document.querySelectorAll('.respuesta-slot');
-    const respuestas = document.querySelectorAll('.respuesta-item');
-
-    slots.forEach(slot => {
-        slot.addEventListener('dragover', e => {
-            e.preventDefault();
-            slot.classList.add('drag-over');
-        });
-
-        slot.addEventListener('dragleave', () => {
-            slot.classList.remove('drag-over');
-        });
-
-        slot.addEventListener('drop', e => {
-            e.preventDefault();
-            slot.classList.remove('drag-over');
-            
-            const respuesta = document.querySelector('.respuesta-item.dragging');
-            if (respuesta) {
-                // Si el slot ya tiene una respuesta, devolverla a la columna
-                if (slot.children.length > 0) {
-                    const respuestaExistente = slot.children[0];
-                    document.querySelector('.respuestas-columna').appendChild(respuestaExistente);
-                }
-                
-                // Mover la nueva respuesta al slot
-                slot.appendChild(respuesta);
-            }
+// Inicializar la pantalla de inicio
+const inicializarJuego = () => {
+    // Configurar los botones de selección de preguntas
+    const questionOptions = document.querySelectorAll('.question-option');
+    questionOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            questionOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            document.getElementById('selected-questions').value = option.dataset.questions;
         });
     });
 
-    respuestas.forEach(respuesta => {
-        respuesta.addEventListener('dragstart', () => {
-            respuesta.classList.add('dragging');
-        });
+    // Configurar el formulario de inicio
+    document.getElementById('start-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById('player-name').value;
+        const preguntas = document.getElementById('selected-questions').value;
 
-        respuesta.addEventListener('dragend', () => {
-            respuesta.classList.remove('dragging');
-        });
+        if (!nombre || !preguntas) {
+            alert('Por favor, ingresa tu nombre y selecciona el número de preguntas');
+            return;
+        }
 
-        respuesta.addEventListener('click', () => {
-            // Si la respuesta está en un slot, devolverla a la columna
-            if (respuesta.parentElement.classList.contains('respuesta-slot')) {
-                document.querySelector('.respuestas-columna').appendChild(respuesta);
-            }
-        });
+        nombreJugador = nombre;
+        totalPreguntas = parseInt(preguntas);
+        preguntaActual = 0;
+        puntaje = 0;
+
+        // Ocultar pantalla de inicio y mostrar pantalla de juego
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('game-screen').style.display = 'block';
+        
+        // Actualizar información del jugador
+        document.getElementById('player-name-display').textContent = `Jugador: ${nombreJugador}`;
+        actualizarProgreso();
+
+        // Cargar datos y comenzar el juego
+        cargarDatos();
     });
 }
 
-const verificarEmparejamiento = () => {
-    const pregunta = datosPreguntas.emparejamiento[preguntaActual];
-    const slots = document.querySelectorAll('.respuesta-slot');
-    const conceptos = document.querySelectorAll('.concepto-item');
-    let paresCorrectos = 0;
+// Actualizar el progreso de preguntas
+const actualizarProgreso = () => {
+    document.getElementById('questions-progress').textContent = 
+        `Pregunta ${preguntaActual + 1} de ${totalPreguntas}`;
+}
 
-    slots.forEach((slot, index) => {
-        const respuesta = slot.children[0];
-        if (respuesta) {
-            const respuestaCorrecta = pregunta.pares[index].respuesta;
-            const respuestaSeleccionada = respuesta.textContent.trim();
-            const esCorrecta = respuestaSeleccionada === respuestaCorrecta;
-            
-            console.log(`Par ${index + 1}:`, {
-                correcta: respuestaCorrecta,
-                seleccionada: respuestaSeleccionada,
-                esCorrecta: esCorrecta
-            });
-            
-            // Marcar visualmente cada par
-            slot.classList.add(esCorrecta ? 'correcto' : 'incorrecto');
-            respuesta.classList.add(esCorrecta ? 'correcto' : 'incorrecto');
-            conceptos[index].classList.add(esCorrecta ? 'correcto' : 'incorrecto');
-            
-            if (esCorrecta) paresCorrectos++;
-        }
-    });
+// Cargar datos de los archivos JSON
+const cargarDatos = async () => {
+    try {
+        // Cargar solo el archivo de emparejamiento
+        const emparejamientoResponse = await fetch('./assets/json/emparejamiento.json');
 
-    // Mostrar resultado con el conteo de pares correctos
-    const resultadoDiv = document.getElementById('resultado');
-    resultadoDiv.innerHTML = `
-        <div class="resultado">
-            Tienes ${paresCorrectos} de ${pregunta.pares.length} pares correctos
-        </div>
-    `;
+        // Verificar que la respuesta sea exitosa
+        if (!emparejamientoResponse.ok) throw new Error('Error al cargar emparejamiento.json');
 
-    // Actualizar puntaje (0.5 puntos por cada par correcto)
-    if (paresCorrectos > 0) {
-        puntaje += paresCorrectos * 0.5;
-        mostrarPuntaje();
+        // Convertir la respuesta a JSON
+        const emparejamiento = await emparejamientoResponse.json();
+
+        // Asignar los datos
+        datosPreguntas = {
+            alternativas: [],
+            completarOracion: [],
+            emparejamiento,
+            ordenarPalabra: [],
+            verdaderoFalso: { preguntas: [] }
+        };
+
+        // Iniciar el juego
+        mostrarPregunta();
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+        alert('Error al cargar los datos del juego. Por favor, verifica que el archivo emparejamiento.json exista y recarga la página.');
+    }
+}
+
+// Mostrar la pregunta actual
+const mostrarPregunta = () => {
+    // Ocultar el botón siguiente al mostrar una nueva pregunta
+    const nextButton = document.getElementById('next-button');
+    nextButton.style.display = 'none';
+    nextButton.disabled = false;
+
+    // Temporalmente solo mostrar preguntas de emparejamiento
+    mostrarPreguntaEmparejamiento();
+}
+
+// Función para pasar a la siguiente pregunta
+const siguientePregunta = () => {
+    // Verificar si el juego ha terminado
+    if (preguntaActual >= totalPreguntas) {
+        return;
     }
 
-    // Deshabilitar el botón de confirmar
-    document.querySelector('.confirmar-btn').disabled = true;
+    // Si estamos en la última pregunta, mostrar el botón de resultados
+    if (preguntaActual === totalPreguntas - 1) {
+        const nextButton = document.getElementById('next-button');
+        nextButton.textContent = 'Ver Resultados';
+        nextButton.onclick = mostrarFinJuego;
+        return;
+    }
 
-    // Mostrar botón siguiente
-    mostrarBotonSiguiente();
+    // Si no es la última pregunta, continuar normalmente
+    preguntaActual++;
+    actualizarProgreso();
+    mostrarPregunta();
 }
+
+// Mostrar pantalla de fin de juego
+const mostrarFinJuego = () => {
+    const container = document.getElementById('question-container');
+    container.innerHTML = `
+        <div class="fin-juego">
+            <h2>¡Juego Terminado!</h2>
+            <p>${nombreJugador}, has completado todas las preguntas.</p>
+            <p>Tu puntaje final es: ${puntaje}</p>
+            <button onclick="reiniciarJuego()">Jugar de nuevo</button>
+        </div>
+    `;
+    // Deshabilitar el botón después de mostrar resultados
+    document.getElementById('next-button').style.display = 'none';
+}
+
+// Reiniciar el juego
+const reiniciarJuego = () => {
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('start-screen').style.display = 'block';
+    document.getElementById('start-form').reset();
+    document.querySelectorAll('.question-option').forEach(opt => opt.classList.remove('selected'));
+}
+
+// Mostrar puntaje en la interfaz
+const mostrarPuntaje = () => {
+    document.getElementById('score').textContent = `Puntaje: ${puntaje}`;
+}
+
+// Función para mostrar el botón siguiente
+const mostrarBotonSiguiente = () => {
+    const nextButton = document.getElementById('next-button');
+    nextButton.style.display = 'block';
+}
+
+// Inicializar el juego al cargar la página
+window.onload = inicializarJuego;
