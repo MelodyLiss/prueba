@@ -62,19 +62,19 @@ const actualizarProgreso = () => {
 // Cargar datos de los archivos JSON
 const cargarDatos = async () => {
     try {
-        // Cargar solo el archivo de alternativas
-        const alternativasResponse = await fetch('./assets/json/alternativas.json');
+        // Cargar solo el archivo de completar oración
+        const completarOracionResponse = await fetch('./assets/json/completarOracion.json');
 
         // Verificar que la respuesta sea exitosa
-        if (!alternativasResponse.ok) throw new Error('Error al cargar alternativas.json');
+        if (!completarOracionResponse.ok) throw new Error('Error al cargar completarOracion.json');
 
         // Convertir la respuesta a JSON
-        const alternativas = await alternativasResponse.json();
+        const completarOracion = await completarOracionResponse.json();
 
         // Asignar los datos
         datosPreguntas = {
-            alternativas,
-            completarOracion: [],
+            alternativas: [],
+            completarOracion,
             emparejamiento: [],
             ordenarPalabra: [],
             verdaderoFalso: { preguntas: [] }
@@ -84,7 +84,7 @@ const cargarDatos = async () => {
         mostrarPregunta();
     } catch (error) {
         console.error('Error al cargar los datos:', error);
-        alert('Error al cargar los datos del juego. Por favor, verifica que el archivo alternativas.json exista y recarga la página.');
+        alert('Error al cargar los datos del juego. Por favor, verifica que el archivo completarOracion.json exista y recarga la página.');
     }
 }
 
@@ -95,8 +95,8 @@ const mostrarPregunta = () => {
     nextButton.style.display = 'none';
     nextButton.disabled = false;
 
-    // Temporalmente solo mostrar preguntas de alternativas
-    mostrarPreguntaConAlternativas();
+    // Temporalmente solo mostrar preguntas de completar oración
+    mostrarPreguntaCompletarOracion();
 }
 
 // Función para pasar a la siguiente pregunta
@@ -106,17 +106,17 @@ const siguientePregunta = () => {
         return;
     }
 
-    preguntaActual++;
-    actualizarProgreso();
-
-    if (preguntaActual >= totalPreguntas) {
-        // Mostrar pantalla de fin de juego
-        mostrarFinJuego();
-        // Deshabilitar el botón siguiente
-        document.getElementById('next-button').disabled = true;
+    // Si estamos en la última pregunta, mostrar el botón de resultados
+    if (preguntaActual === totalPreguntas - 1) {
+        const nextButton = document.getElementById('next-button');
+        nextButton.textContent = 'Ver Resultados';
+        nextButton.onclick = mostrarFinJuego;
         return;
     }
 
+    // Si no es la última pregunta, continuar normalmente
+    preguntaActual++;
+    actualizarProgreso();
     mostrarPregunta();
 }
 
@@ -131,6 +131,8 @@ const mostrarFinJuego = () => {
             <button onclick="reiniciarJuego()">Jugar de nuevo</button>
         </div>
     `;
+    // Deshabilitar el botón después de mostrar resultados
+    document.getElementById('next-button').style.display = 'none';
 }
 
 // Reiniciar el juego

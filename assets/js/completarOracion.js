@@ -4,7 +4,7 @@ const mostrarPreguntaCompletarOracion = () => {
 
     const preguntaHTML = `
         <div class="oracion-container">
-            <h2 class="pregunta-titulo">${pregunta.pregunta}</h2>
+            <h2 class="pregunta-titulo">Completa la oración</h2>
             <div class="oracion">${pregunta.oracion}</div>
             <div class="respuesta-container">
                 <input type="text" class="respuesta-input" placeholder="Escribe tu respuesta">
