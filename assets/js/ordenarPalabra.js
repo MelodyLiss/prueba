@@ -3,20 +3,25 @@ import { siguientePregunta, mostrarPuntaje } from './main.js';
 let preguntaActual = null;
 
 export const inicializarOrdenarPalabra = (pregunta) => {
+    if (!pregunta || !pregunta.palabras_desordenadas || !pregunta.orden_correcto) {
+        console.error('La pregunta o sus propiedades son undefined');
+        return;
+    }
+
     const contenedorPregunta = document.getElementById('question-container');
     preguntaActual = pregunta;
 
     const preguntaHTML = `
         <div class="ordenar-palabra-container">
             <h2 class="tema-titulo">Ordenar Palabras</h2>
-            <div class="pregunta-texto">${pregunta.pregunta}</div>
+            <div class="pregunta-texto">${pregunta.tema}</div>
             <div class="palabras-ordenadas">
-                ${pregunta.palabras.map((_, index) => `
+                ${pregunta.orden_correcto.map((_, index) => `
                     <div class="palabra-slot" draggable="false" data-index="${index}"></div>
                 `).join('')}
             </div>
             <div class="palabras-desordenadas">
-                ${pregunta.palabras.map((palabra, index) => `
+                ${pregunta.palabras_desordenadas.map((palabra, index) => `
                     <div class="palabra-item" draggable="true" data-index="${index}">
                         ${palabra}
                     </div>
@@ -24,6 +29,7 @@ export const inicializarOrdenarPalabra = (pregunta) => {
             </div>
             <button class="confirmar-btn" onclick="verificarOrdenarPalabra()">Confirmar</button>
             <div id="resultado" class="resultado"></div>
+            <div id="informacion" class="informacion-complementaria"></div>
         </div>
     `;
     contenedorPregunta.innerHTML = preguntaHTML;
@@ -83,7 +89,8 @@ window.verificarOrdenarPalabra = () => {
         const palabra = slot.firstChild;
         if (palabra) {
             const palabraIndex = parseInt(palabra.dataset.index);
-            const esCorrecto = palabraIndex === index;
+            const palabraSeleccionada = preguntaActual.palabras_desordenadas[palabraIndex];
+            const esCorrecto = palabraSeleccionada === preguntaActual.orden_correcto[index];
             
             slot.classList.add(esCorrecto ? 'correcto' : 'incorrecto');
             if (esCorrecto) palabrasCorrectas++;
@@ -91,9 +98,17 @@ window.verificarOrdenarPalabra = () => {
     });
 
     const resultadoDiv = document.getElementById('resultado');
+    const informacionDiv = document.getElementById('informacion');
+
     resultadoDiv.innerHTML = `
         <div class="resultado">
-            ${palabrasCorrectas} de ${preguntaActual.palabras.length} palabras correctas
+            ${palabrasCorrectas} de ${preguntaActual.orden_correcto.length} palabras correctas
+        </div>
+    `;
+
+    informacionDiv.innerHTML = `
+        <div class="informacion-complementaria">
+            ${preguntaActual.informacion_complementaria}
         </div>
     `;
 

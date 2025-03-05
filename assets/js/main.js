@@ -97,6 +97,12 @@ const cargarDatos = async () => {
 }
 
 const mostrarPregunta = () => {
+    // Si hemos llegado al límite de preguntas, mostrar la pantalla final
+    if (preguntaActual >= totalPreguntas) {
+        mostrarFinJuego();
+        return;
+    }
+
     const nextButton = document.getElementById('next-button');
     nextButton.style.display = 'none';
     nextButton.disabled = false;
@@ -110,7 +116,11 @@ const mostrarPregunta = () => {
             inicializarVerdaderoFalso(datosPreguntas.verdaderoFalso.preguntas[preguntaActual]);
             break;
         case 'alternativas':
-            inicializarAlternativas(datosPreguntas.alternativas[preguntaActual]);
+            if (preguntaActual < datosPreguntas.alternativas.length) {
+                inicializarAlternativas(datosPreguntas.alternativas[preguntaActual]);
+            } else {
+                console.error('Índice de pregunta fuera de rango');
+            }
             break;
         case 'completarOracion':
             inicializarCompletarOracion(datosPreguntas.completarOracion[preguntaActual]);
@@ -126,13 +136,7 @@ const mostrarPregunta = () => {
 
 export const siguientePregunta = () => {
     if (preguntaActual >= totalPreguntas) {
-        return;
-    }
-
-    if (preguntaActual === totalPreguntas - 1) {
-        const nextButton = document.getElementById('next-button');
-        nextButton.textContent = 'Ver Resultados';
-        nextButton.onclick = mostrarFinJuego;
+        mostrarFinJuego();
         return;
     }
 

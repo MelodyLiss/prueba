@@ -3,6 +3,11 @@ import { siguientePregunta, mostrarPuntaje } from './main.js';
 let preguntaActual = null;
 
 export const inicializarAlternativas = (pregunta) => {
+    if (!pregunta) {
+        console.error('La pregunta es undefined');
+        return;
+    }
+
     const contenedorPregunta = document.getElementById('question-container');
     preguntaActual = pregunta;
 
