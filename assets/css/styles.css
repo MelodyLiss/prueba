@@ -73,18 +73,26 @@ button:hover {
 }
 
 .resultado {
-    margin-top: 20px;
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .resultado.correcto {
-    color: green;
-    font-weight: bold;
+    color: #2e7d32;
+    background-color: #e8f5e9;
 }
 
 .resultado.incorrecto {
-    color: red;
-    font-weight: bold;
+    color: #c62828;
+    background-color: #ffebee;
 }
 
 .correcto {
@@ -194,23 +202,6 @@ button:hover {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.resultado {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.resultado.correcto {
-    color: #2e7d32;
-}
-
-.resultado.incorrecto {
-    color: #c62828;
 }
 
 .informacion-complementaria {
@@ -804,25 +795,6 @@ button:hover {
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
-}
-
-.resultado {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin: 20px 0;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.resultado.correcto {
-    color: #2e7d32;
-    background-color: #e8f5e9;
-}
-
-.resultado.incorrecto {
-    color: #c62828;
-    background-color: #ffebee;
 }
 
 .informacion-complementaria {
