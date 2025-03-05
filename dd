@@ -1,8 +1,11 @@
-[33mcommit 248d398379ec6fe0dda47d921239ccf8bfc8cc5d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+[33mcommit 248d398379ec6fe0dda47d921239ccf8bfc8cc5d[mgit [33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
 Author: MelodyLiss <lisette.jofre.1@gmail.com>
 Date:   Wed Mar 5 16:27:19 2025 -0300
 
     logica final verdaderoFalso ok
+
+
+
 
 [33mcommit 5179b0709a63db2ec0371f2adbd42a93482bb655[m
 Author: MelodyLiss <lisette.jofre.1@gmail.com>
@@ -22,8 +25,3 @@ Date:   Wed Mar 5 15:58:37 2025 -0300
 
     logica de completar la oracion ok
 
-[33mcommit c55d89dac429c123b61fde3a8673aab4dc4169b8[m
-Author: MelodyLiss <lisette.jofre.1@gmail.com>
-Date:   Wed Mar 5 15:49:00 2025 -0300
-
-    logica alternativas ok
