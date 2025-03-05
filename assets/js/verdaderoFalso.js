@@ -1,156 +1,20 @@
 // main.js
 
-let preguntaActual = 0;
-let totalPreguntas = 0;
-let nombreJugador = '';
-let puntaje = 0;
-let datosPreguntas = {
-    verdaderoFalso: { preguntas: [] }
-};
+import { siguientePregunta, mostrarPuntaje } from './main.js';
 
-// Inicializar la pantalla de inicio
-const inicializarJuego = () => {
-    // Configurar los botones de selección de preguntas
-    const questionOptions = document.querySelectorAll('.question-option');
-    questionOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            questionOptions.forEach(opt => opt.classList.remove('selected'));
-            option.classList.add('selected');
-            document.getElementById('selected-questions').value = option.dataset.questions;
-        });
-    });
+let preguntaActual = null;
 
-    // Configurar el formulario de inicio
-    document.getElementById('start-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const nombre = document.getElementById('player-name').value;
-        const preguntas = document.getElementById('selected-questions').value;
-
-        if (!nombre || !preguntas) {
-            alert('Por favor, ingresa tu nombre y selecciona el número de preguntas');
-            return;
-        }
-
-        nombreJugador = nombre;
-        totalPreguntas = parseInt(preguntas);
-        preguntaActual = 0;
-        puntaje = 0;
-
-        // Ocultar pantalla de inicio y mostrar pantalla de juego
-        document.getElementById('start-screen').style.display = 'none';
-        document.getElementById('game-screen').style.display = 'block';
-        
-        // Actualizar información del jugador
-        document.getElementById('player-name-display').textContent = `Jugador: ${nombreJugador}`;
-        actualizarProgreso();
-
-        // Cargar datos y comenzar el juego
-        cargarDatos();
-    });
-}
-
-// Actualizar el progreso de preguntas
-const actualizarProgreso = () => {
-    document.getElementById('questions-progress').textContent = 
-        `Pregunta ${preguntaActual + 1} de ${totalPreguntas}`;
-}
-
-// Cargar datos de los archivos JSON
-const cargarDatos = async () => {
-    try {
-        // Cargar archivo JSON
-        const verdaderoFalsoResponse = await fetch('./assets/json/verdaderoFalso.json');
-
-        // Verificar que la respuesta sea exitosa
-        if (!verdaderoFalsoResponse.ok) throw new Error('Error al cargar verdaderoFalso.json');
-
-        // Convertir la respuesta a JSON
-        const verdaderoFalso = await verdaderoFalsoResponse.json();
-
-        // Asignar los datos
-        datosPreguntas = {
-            verdaderoFalso
-        };
-
-        // Iniciar el juego
-        mostrarPregunta();
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-        alert('Error al cargar los datos del juego. Por favor, verifica que el archivo JSON exista y recarga la página.');
-    }
-}
-
-// Mostrar la pregunta actual
-const mostrarPregunta = () => {
-    // Ocultar el botón siguiente al mostrar una nueva pregunta
-    const nextButton = document.getElementById('next-button');
-    nextButton.style.display = 'none';
-    nextButton.disabled = false;
-
-    // Mostrar pregunta de verdadero/falso
-    mostrarPreguntaVerdaderoFalso();
-}
-
-// Función para pasar a la siguiente pregunta
-const siguientePregunta = () => {
-    // Verificar si el juego ha terminado
-    if (preguntaActual >= totalPreguntas) {
-        return;
-    }
-
-    // Si estamos en la última pregunta, mostrar el botón de resultados
-    if (preguntaActual === totalPreguntas - 1) {
-        const nextButton = document.getElementById('next-button');
-        nextButton.textContent = 'Ver Resultados';
-        nextButton.onclick = mostrarFinJuego;
-        return;
-    }
-
-    // Si no es la última pregunta, continuar normalmente
-    preguntaActual++;
-    actualizarProgreso();
-    mostrarPregunta();
-}
-
-// Mostrar pantalla de fin de juego
-const mostrarFinJuego = () => {
-    const container = document.getElementById('question-container');
-    container.innerHTML = `
-        <div class="fin-juego">
-            <h2>¡Juego Terminado!</h2>
-            <p>${nombreJugador}, has completado todas las preguntas.</p>
-            <p>Tu puntaje final es: ${puntaje}</p>
-            <button onclick="reiniciarJuego()">Jugar de nuevo</button>
-        </div>
-    `;
-    // Deshabilitar el botón después de mostrar resultados
-    document.getElementById('next-button').style.display = 'none';
-}
-
-// Reiniciar el juego
-const reiniciarJuego = () => {
-    document.getElementById('game-screen').style.display = 'none';
-    document.getElementById('start-screen').style.display = 'block';
-    document.getElementById('start-form').reset();
-    document.querySelectorAll('.question-option').forEach(opt => opt.classList.remove('selected'));
-}
-
-// Mostrar puntaje en la interfaz
-const mostrarPuntaje = () => {
-    document.getElementById('score').textContent = `Puntaje: ${puntaje}`;
-}
-
-const mostrarPreguntaVerdaderoFalso = () => {
-    const pregunta = datosPreguntas.verdaderoFalso.preguntas[preguntaActual];
+export const inicializarVerdaderoFalso = (pregunta) => {
     const contenedorPregunta = document.getElementById('question-container');
+    preguntaActual = pregunta;
 
     const preguntaHTML = `
         <div class="verdadero-falso-container">
             <h2 class="tema-titulo">Verdadero o Falso</h2>
             <div class="pregunta-texto">${pregunta.pregunta}</div>
             <div class="opciones-container">
-                <button class="opcion-btn verdadero" onclick="verificarRespuesta(true)">Verdadero</button>
-                <button class="opcion-btn falso" onclick="verificarRespuesta(false)">Falso</button>
+                <button class="opcion-btn verdadero" onclick="verificarRespuestaVerdaderoFalso(true)">Verdadero</button>
+                <button class="opcion-btn falso" onclick="verificarRespuestaVerdaderoFalso(false)">Falso</button>
             </div>
             <div id="resultado" class="resultado"></div>
             <div id="informacion" class="informacion-complementaria"></div>
@@ -159,44 +23,33 @@ const mostrarPreguntaVerdaderoFalso = () => {
     contenedorPregunta.innerHTML = preguntaHTML;
 }
 
-const verificarRespuesta = (respuestaSeleccionada) => {
-    const pregunta = datosPreguntas.verdaderoFalso.preguntas[preguntaActual];
+window.verificarRespuestaVerdaderoFalso = (respuestaSeleccionada) => {
+    if (!preguntaActual) return;
+
     const resultadoDiv = document.getElementById('resultado');
     const informacionDiv = document.getElementById('informacion');
     const botones = document.querySelectorAll('.opcion-btn');
 
-    // Deshabilitar los botones después de responder
     botones.forEach(boton => boton.disabled = true);
 
-    // Verificar si la respuesta es correcta
-    const esCorrecta = respuestaSeleccionada === pregunta.respuestaCorrecta;
+    const esCorrecta = respuestaSeleccionada === preguntaActual.respuestaCorrecta;
 
-    // Mostrar resultado
     resultadoDiv.innerHTML = `
         <div class="resultado ${esCorrecta ? 'correcto' : 'incorrecto'}">
             ${esCorrecta ? '¡Correcto!' : 'Incorrecto'}
         </div>
     `;
 
-    // Mostrar información complementaria
     informacionDiv.innerHTML = `
         <div class="informacion-complementaria">
-            ${pregunta.informacionComplementaria}
+            ${preguntaActual.informacionComplementaria}
         </div>
     `;
 
-    // Actualizar puntaje (1 punto por respuesta correcta)
     if (esCorrecta) {
-        puntaje += 1;
         mostrarPuntaje();
     }
 
-    // Mostrar botón siguiente
-    const nextButton = document.getElementById('next-button');
-    nextButton.style.display = 'block';
-    nextButton.disabled = false;
-    nextButton.onclick = siguientePregunta;
+    document.getElementById('next-button').style.display = 'block';
+    document.getElementById('next-button').onclick = siguientePregunta;
 }
-
-// Inicializar el juego al cargar la página
-window.onload = inicializarJuego;

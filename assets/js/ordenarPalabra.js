@@ -1,61 +1,36 @@
-let palabrasOrdenadas = [];
-let palabrasCorrectas = 0;
+import { siguientePregunta, mostrarPuntaje } from './main.js';
 
-const mostrarPreguntaOrdenarPalabra = () => {
-    const pregunta = datosPreguntas.ordenarPalabra[preguntaActual];
+let preguntaActual = null;
+
+export const inicializarOrdenarPalabra = (pregunta) => {
     const contenedorPregunta = document.getElementById('question-container');
+    preguntaActual = pregunta;
 
     const preguntaHTML = `
         <div class="ordenar-palabra-container">
-            <h2 class="pregunta-titulo">${pregunta.pregunta}</h2>
+            <h2 class="tema-titulo">Ordenar Palabras</h2>
+            <div class="pregunta-texto">${pregunta.pregunta}</div>
             <div class="palabras-ordenadas">
                 ${pregunta.palabras.map((_, index) => `
-                    <div class="palabra-slot" draggable="false"></div>
+                    <div class="palabra-slot" draggable="false" data-index="${index}"></div>
                 `).join('')}
             </div>
             <div class="palabras-desordenadas">
                 ${pregunta.palabras.map((palabra, index) => `
-                    <div class="palabra-item" draggable="true">${palabra}</div>
+                    <div class="palabra-item" draggable="true" data-index="${index}">
+                        ${palabra}
+                    </div>
                 `).join('')}
             </div>
             <button class="confirmar-btn" onclick="verificarOrdenarPalabra()">Confirmar</button>
             <div id="resultado" class="resultado"></div>
-            <div id="explicacion" class="explicacion"></div>
         </div>
     `;
     contenedorPregunta.innerHTML = preguntaHTML;
 
     // Configurar eventos de drag and drop
-    const slots = document.querySelectorAll('.palabra-slot');
     const palabras = document.querySelectorAll('.palabra-item');
-
-    slots.forEach(slot => {
-        slot.addEventListener('dragover', e => {
-            e.preventDefault();
-            slot.classList.add('drag-over');
-        });
-
-        slot.addEventListener('dragleave', () => {
-            slot.classList.remove('drag-over');
-        });
-
-        slot.addEventListener('drop', e => {
-            e.preventDefault();
-            slot.classList.remove('drag-over');
-            
-            const palabra = document.querySelector('.palabra-item.dragging');
-            if (palabra) {
-                // Si el slot ya tiene una palabra, devolverla a la sección desordenada
-                if (slot.children.length > 0) {
-                    const palabraExistente = slot.children[0];
-                    document.querySelector('.palabras-desordenadas').appendChild(palabraExistente);
-                }
-                
-                // Mover la nueva palabra al slot
-                slot.appendChild(palabra);
-            }
-        });
-    });
+    const slots = document.querySelectorAll('.palabra-slot');
 
     palabras.forEach(palabra => {
         palabra.addEventListener('dragstart', () => {
@@ -65,67 +40,70 @@ const mostrarPreguntaOrdenarPalabra = () => {
         palabra.addEventListener('dragend', () => {
             palabra.classList.remove('dragging');
         });
+    });
 
-        palabra.addEventListener('click', () => {
-            // Si la palabra está en un slot, devolverla a la sección desordenada
-            if (palabra.parentElement.classList.contains('palabra-slot')) {
-                document.querySelector('.palabras-desordenadas').appendChild(palabra);
+    slots.forEach(slot => {
+        slot.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            if (!slot.hasChildNodes()) {
+                slot.classList.add('drag-over');
+            }
+        });
+
+        slot.addEventListener('dragleave', () => {
+            slot.classList.remove('drag-over');
+        });
+
+        slot.addEventListener('drop', (e) => {
+            e.preventDefault();
+            slot.classList.remove('drag-over');
+            const palabra = document.querySelector('.dragging');
+            
+            if (palabra) {
+                // Si el slot ya tiene una palabra, devolverla al contenedor de palabras desordenadas
+                if (slot.hasChildNodes()) {
+                    const palabraExistente = slot.firstChild;
+                    document.querySelector('.palabras-desordenadas').appendChild(palabraExistente);
+                }
+                
+                slot.appendChild(palabra);
+                palabra.style.display = 'block';
             }
         });
     });
 }
 
-const verificarOrdenarPalabra = () => {
-    const pregunta = datosPreguntas.ordenarPalabra[preguntaActual];
+window.verificarOrdenarPalabra = () => {
+    if (!preguntaActual) return;
+
     const slots = document.querySelectorAll('.palabra-slot');
     let palabrasCorrectas = 0;
 
     slots.forEach((slot, index) => {
-        const palabra = slot.children[0];
+        const palabra = slot.firstChild;
         if (palabra) {
-            const palabraCorrecta = pregunta.palabras[index];
-            const esCorrecta = palabra.textContent === palabraCorrecta;
+            const palabraIndex = parseInt(palabra.dataset.index);
+            const esCorrecto = palabraIndex === index;
             
-            slot.classList.add(esCorrecta ? 'correcto' : 'incorrecto');
-            if (esCorrecta) palabrasCorrectas++;
+            slot.classList.add(esCorrecto ? 'correcto' : 'incorrecto');
+            if (esCorrecto) palabrasCorrectas++;
         }
     });
 
-    // Mostrar resultado
     const resultadoDiv = document.getElementById('resultado');
     resultadoDiv.innerHTML = `
-        <div class="resultado ${palabrasCorrectas === pregunta.palabras.length ? 'correcto' : 'incorrecto'}">
-            ${palabrasCorrectas === pregunta.palabras.length ? '¡Correcto!' : 'Incorrecto'}
+        <div class="resultado">
+            ${palabrasCorrectas} de ${preguntaActual.palabras.length} palabras correctas
         </div>
     `;
 
-    // Mostrar información complementaria
-    const explicacionDiv = document.getElementById('explicacion');
-    explicacionDiv.innerHTML = `
-        <p class="informacion-complementaria">${pregunta.informacionComplementaria}</p>
-    `;
-
-    // Actualizar puntaje (1 punto si todas las palabras están correctas)
-    if (palabrasCorrectas === pregunta.palabras.length) {
-        puntaje += 1;
-        mostrarPuntaje();
+    if (palabrasCorrectas > 0) {
+        // Cada palabra correcta otorga 0.5 puntos
+        const puntosGanados = palabrasCorrectas * 0.5;
+        mostrarPuntaje(puntosGanados);
     }
 
-    // Deshabilitar el botón de confirmar
     document.querySelector('.confirmar-btn').disabled = true;
-
-    // Mostrar botón siguiente
-    mostrarBotonSiguiente();
-}
-
-const actualizarPalabrasOrdenadas = () => {
-    const slots = document.querySelectorAll('.palabra-slot');
-    palabrasOrdenadas = [];
-
-    slots.forEach(slot => {
-        const palabraElement = slot.querySelector('.palabra-item');
-        if (palabraElement) {
-            palabrasOrdenadas.push(palabraElement.dataset.palabra);
-        }
-    });
+    document.getElementById('next-button').style.display = 'block';
+    document.getElementById('next-button').onclick = siguientePregunta;
 } 
