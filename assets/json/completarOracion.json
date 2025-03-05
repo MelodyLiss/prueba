@@ -1,0 +1,24 @@
+[
+    {
+        "oracion": "El sol es una ____.",
+        "opciones": [
+            "estrella",
+            "planeta",
+            "luna",
+            "satélite"
+        ],
+        "respuestaCorrecta": "estrella",
+        "informacionComplementaria": "El sol es una estrella porque es una enorme bola de gas que emite luz y calor debido a las reacciones nucleares en su núcleo."
+    },
+    {
+        "oracion": "La tierra es el ____ planeta del sistema solar.",
+        "opciones": [
+            "tercer",
+            "segundo",
+            "quinto",
+            "primer"
+        ],
+        "respuestaCorrecta": "tercer",
+        "informacionComplementaria": "La Tierra es el tercer planeta desde el sol, lo que le permite tener las condiciones adecuadas para la vida."
+    }
+]

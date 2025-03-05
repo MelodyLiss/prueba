@@ -1,0 +1,46 @@
+[
+    {
+        "pregunta": "¿Cuál es el continente más grande del mundo?",
+        "opciones": [
+            "Asia",
+            "África",
+            "Europa",
+            "América"
+        ],
+        "respuesta_correcta": "Asia",
+        "informacion_complementaria": "Asia es el continente más grande en términos de superficie terrestre. Con más de 44 millones de km², es hogar de diversas culturas, religiones y economías importantes en el mundo."
+    },
+    {
+        "pregunta": "¿Quién fue el primer presidente de los Estados Unidos?",
+        "opciones": [
+            "Abraham Lincoln",
+            "George Washington",
+            "Thomas Jefferson",
+            "John Adams"
+        ],
+        "respuesta_correcta": "George Washington",
+        "informacion_complementaria": "George Washington fue el primer presidente de los Estados Unidos, sirviendo dos mandatos de 1789 a 1797. Fue uno de los padres fundadores y jugó un papel crucial en la independencia de los Estados Unidos."
+    },
+    {
+        "pregunta": "¿Cuál es el océano más grande del mundo?",
+        "opciones": [
+            "Atlántico",
+            "Índico",
+            "Ártico",
+            "Pacífico"
+        ],
+        "respuesta_correcta": "Pacífico",
+        "informacion_complementaria": "El océano Pacífico es el más grande, cubriendo aproximadamente el 30% de la superficie terrestre. Se extiende desde el Ártico hasta la Antártida y limita con Asia, América y Oceanía."
+    },
+    {
+        "pregunta": "¿Qué gas es esencial para la respiración humana?",
+        "opciones": [
+            "Oxígeno",
+            "Nitrógeno",
+            "Dióxido de carbono",
+            "Metano"
+        ],
+        "respuesta_correcta": "Oxígeno",
+        "informacion_complementaria": "El oxígeno es necesario para la respiración celular, que permite a las células de nuestro cuerpo producir energía. Es el gas que inhalamos y se encuentra en el aire en una proporción de aproximadamente 21%."
+    }
+]

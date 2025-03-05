@@ -1,0 +1,65 @@
+[
+    {
+        "tema": "Planetas y sus características",
+        "pares": [
+            {
+                "concepto": "Mercurio",
+                "respuesta": "Planeta más cercano al sol"
+            },
+            {
+                "concepto": "Venus",
+                "respuesta": "Planeta con temperaturas extremadamente altas"
+            },
+            {
+                "concepto": "Tierra",
+                "respuesta": "Único planeta conocido con vida"
+            },
+            {
+                "concepto": "Marte",
+                "respuesta": "Planeta rojo, conocido por sus casquetes polares"
+            }
+        ]
+    },
+    {
+        "tema": "Clasificación de animales",
+        "pares": [
+            {
+                "concepto": "León",
+                "respuesta": "Mamífero"
+            },
+            {
+                "concepto": "Rana",
+                "respuesta": "Anfibio"
+            },
+            {
+                "concepto": "Águila",
+                "respuesta": "Aves"
+            },
+            {
+                "concepto": "Cangrejo",
+                "respuesta": "Artrópodo"
+            }
+        ]
+    },
+    {
+        "tema": "Capitales y países",
+        "pares": [
+            {
+                "concepto": "Chile",
+                "respuesta": "Santiago"
+            },
+            {
+                "concepto": "Francia",
+                "respuesta": "París"
+            },
+            {
+                "concepto": "Japón",
+                "respuesta": "Tokio"
+            },
+            {
+                "concepto": "España",
+                "respuesta": "Madrid"
+            }
+        ]
+    }
+]

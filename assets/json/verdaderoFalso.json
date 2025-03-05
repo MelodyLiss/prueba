@@ -1,0 +1,29 @@
+{
+    "preguntas": [
+        {
+            "pregunta": "¿La Tierra es plana?",
+            "respuestaCorrecta": false,
+            "informacionComplementaria": "La Tierra es un planeta esférico que gira alrededor del Sol."
+        },
+        {
+            "pregunta": "¿El agua hierve a 100 grados Celsius?",
+            "respuestaCorrecta": true,
+            "informacionComplementaria": "A nivel del mar, el agua hierve a 100°C (212°F)."
+        },
+        {
+            "pregunta": "¿Los humanos tienen 206 huesos en el cuerpo?",
+            "respuestaCorrecta": true,
+            "informacionComplementaria": "El esqueleto humano adulto está compuesto por 206 huesos."
+        },
+        {
+            "pregunta": "¿La luz viaja más rápido que el sonido?",
+            "respuestaCorrecta": true,
+            "informacionComplementaria": "La luz viaja a aproximadamente 299,792 km/s, mientras que el sonido viaja a 343 m/s en el aire."
+        },
+        {
+            "pregunta": "¿El sol gira alrededor de la Tierra?",
+            "respuestaCorrecta": false,
+            "informacionComplementaria": "La Tierra gira alrededor del Sol, no al revés. Este es un principio fundamental de la astronomía."
+        }
+    ]
+}

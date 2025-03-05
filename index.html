@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Preguntas</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+    <div id="start-screen" class="screen">
+        <h1>¡Bienvenido al Juego de Preguntas!</h1>
+        <form id="start-form">
+            <div class="form-group">
+                <label for="player-name">Tu nombre:</label>
+                <input type="text" id="player-name" required>
+            </div>
+            <div class="form-group">
+                <label>Número de preguntas:</label>
+                <div class="question-options">
+                    <button type="button" class="question-option" data-questions="3">3</button>
+                    <button type="button" class="question-option" data-questions="5">5</button>
+                </div>
+                <input type="hidden" id="selected-questions" required>
+            </div>
+            <button type="submit" id="start-button">¡Comenzar!</button>
+        </form>
+    </div>
+
+    <div id="game-screen" class="screen" style="display: none;">
+        <div id="player-info">
+            <span id="player-name-display"></span>
+            <span id="questions-progress"></span>
+        </div>
+        <div id="game-container">
+            <div id="question-container"></div>
+            <button id="next-button" onclick="siguientePregunta()" style="display:none;">Siguiente</button>
+            <p id="score">Puntaje: 0</p>
+        </div>
+    </div>
+
+    <script src="./assets/js/alternativas.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
