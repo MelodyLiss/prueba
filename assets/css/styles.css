@@ -645,3 +645,26 @@ button:hover {
 .fin-juego button:hover {
     background-color: #2980b9;
 }
+
+/* Estilos para emparejamiento */
+.concepto-item.correcto,
+.respuesta-item.correcto,
+.respuesta-slot.correcto {
+    background-color: #e8f5e9;
+    border-color: #4caf50;
+    color: #2e7d32;
+}
+
+.concepto-item.incorrecto,
+.respuesta-item.incorrecto,
+.respuesta-slot.incorrecto {
+    background-color: #ffebee;
+    border-color: #f44336;
+    color: #c62828;
+}
+
+.concepto-item,
+.respuesta-item,
+.respuesta-slot {
+    transition: all 0.3s ease;
+}

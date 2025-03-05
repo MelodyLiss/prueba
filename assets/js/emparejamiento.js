@@ -2,6 +2,11 @@ const mostrarPreguntaEmparejamiento = () => {
     const pregunta = datosPreguntas.emparejamiento[preguntaActual];
     const contenedorPregunta = document.getElementById('question-container');
 
+    // Crear un array de respuestas y desordenarlo
+    const respuestasDesordenadas = [...pregunta.pares]
+        .map(par => par.respuesta)
+        .sort(() => Math.random() - 0.5);
+
     const preguntaHTML = `
         <div class="emparejamiento-container">
             <h2 class="tema-titulo">${pregunta.tema}</h2>
@@ -14,15 +19,14 @@ const mostrarPreguntaEmparejamiento = () => {
                 `).join('')}
             </div>
             <div class="respuestas-columna">
-                ${pregunta.pares.map((par, index) => `
-                    <div class="respuesta-item" draggable="true" data-respuesta="${par.respuesta}">
-                        ${par.respuesta}
+                ${respuestasDesordenadas.map(respuesta => `
+                    <div class="respuesta-item" draggable="true" data-respuesta="${respuesta}">
+                        ${respuesta}
                     </div>
                 `).join('')}
             </div>
             <button class="confirmar-btn" onclick="verificarEmparejamiento()">Confirmar</button>
             <div id="resultado" class="resultado"></div>
-            <div id="explicacion" class="explicacion"></div>
         </div>
     `;
     contenedorPregunta.innerHTML = preguntaHTML;
@@ -80,31 +84,37 @@ const mostrarPreguntaEmparejamiento = () => {
 const verificarEmparejamiento = () => {
     const pregunta = datosPreguntas.emparejamiento[preguntaActual];
     const slots = document.querySelectorAll('.respuesta-slot');
+    const conceptos = document.querySelectorAll('.concepto-item');
     let paresCorrectos = 0;
 
     slots.forEach((slot, index) => {
         const respuesta = slot.children[0];
         if (respuesta) {
             const respuestaCorrecta = pregunta.pares[index].respuesta;
-            const esCorrecta = respuesta.textContent === respuestaCorrecta;
+            const respuestaSeleccionada = respuesta.textContent.trim();
+            const esCorrecta = respuestaSeleccionada === respuestaCorrecta;
             
+            console.log(`Par ${index + 1}:`, {
+                correcta: respuestaCorrecta,
+                seleccionada: respuestaSeleccionada,
+                esCorrecta: esCorrecta
+            });
+            
+            // Marcar visualmente cada par
             slot.classList.add(esCorrecta ? 'correcto' : 'incorrecto');
+            respuesta.classList.add(esCorrecta ? 'correcto' : 'incorrecto');
+            conceptos[index].classList.add(esCorrecta ? 'correcto' : 'incorrecto');
+            
             if (esCorrecta) paresCorrectos++;
         }
     });
 
-    // Mostrar resultado
+    // Mostrar resultado con el conteo de pares correctos
     const resultadoDiv = document.getElementById('resultado');
     resultadoDiv.innerHTML = `
-        <div class="resultado ${paresCorrectos === pregunta.pares.length ? 'correcto' : 'incorrecto'}">
-            ${paresCorrectos === pregunta.pares.length ? '¡Correcto!' : 'Incorrecto'}
+        <div class="resultado">
+            Tienes ${paresCorrectos} de ${pregunta.pares.length} pares correctos
         </div>
-    `;
-
-    // Mostrar información complementaria
-    const explicacionDiv = document.getElementById('explicacion');
-    explicacionDiv.innerHTML = `
-        <p class="informacion-complementaria">${pregunta.informacionComplementaria}</p>
     `;
 
     // Actualizar puntaje (0.5 puntos por cada par correcto)

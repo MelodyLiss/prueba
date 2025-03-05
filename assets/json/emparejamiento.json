@@ -61,5 +61,26 @@
                 "respuesta": "Madrid"
             }
         ]
+    },
+    {
+        "tema": "Clasificación de animales",
+        "pares": [
+            {
+                "concepto": "León",
+                "respuesta": "Mamífero"
+            },
+            {
+                "concepto": "Rana",
+                "respuesta": "Anfibio"
+            },
+            {
+                "concepto": "Águila",
+                "respuesta": "Aves"
+            },
+            {
+                "concepto": "Cangrejo",
+                "respuesta": "Artrópodo"
+            }
+        ]
     }
 ]

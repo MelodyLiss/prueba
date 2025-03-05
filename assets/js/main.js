@@ -62,20 +62,20 @@ const actualizarProgreso = () => {
 // Cargar datos de los archivos JSON
 const cargarDatos = async () => {
     try {
-        // Cargar solo el archivo de completar oración
-        const completarOracionResponse = await fetch('./assets/json/completarOracion.json');
+        // Cargar solo el archivo de emparejamiento
+        const emparejamientoResponse = await fetch('./assets/json/emparejamiento.json');
 
         // Verificar que la respuesta sea exitosa
-        if (!completarOracionResponse.ok) throw new Error('Error al cargar completarOracion.json');
+        if (!emparejamientoResponse.ok) throw new Error('Error al cargar emparejamiento.json');
 
         // Convertir la respuesta a JSON
-        const completarOracion = await completarOracionResponse.json();
+        const emparejamiento = await emparejamientoResponse.json();
 
         // Asignar los datos
         datosPreguntas = {
             alternativas: [],
-            completarOracion,
-            emparejamiento: [],
+            completarOracion: [],
+            emparejamiento,
             ordenarPalabra: [],
             verdaderoFalso: { preguntas: [] }
         };
@@ -84,7 +84,7 @@ const cargarDatos = async () => {
         mostrarPregunta();
     } catch (error) {
         console.error('Error al cargar los datos:', error);
-        alert('Error al cargar los datos del juego. Por favor, verifica que el archivo completarOracion.json exista y recarga la página.');
+        alert('Error al cargar los datos del juego. Por favor, verifica que el archivo emparejamiento.json exista y recarga la página.');
     }
 }
 
@@ -95,8 +95,8 @@ const mostrarPregunta = () => {
     nextButton.style.display = 'none';
     nextButton.disabled = false;
 
-    // Temporalmente solo mostrar preguntas de completar oración
-    mostrarPreguntaCompletarOracion();
+    // Temporalmente solo mostrar preguntas de emparejamiento
+    mostrarPreguntaEmparejamiento();
 }
 
 // Función para pasar a la siguiente pregunta
