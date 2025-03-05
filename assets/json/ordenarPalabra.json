@@ -30,5 +30,37 @@
             "Inicio de la Primera Guerra Mundial"
         ],
         "informacion_complementaria": "La caída del Imperio Romano ocurrió en el siglo V, la Revolución Francesa a finales del siglo XVIII, el Descubrimiento de América en 1492 y el inicio de la Primera Guerra Mundial en 1914."
+    },
+    {
+        "tema": "Ordenar los períodos de la prehistoria",
+        "palabras_desordenadas": [
+            "Neolítico",
+            "Paleolítico",
+            "Edad de los Metales",
+            "Mesolítico"
+        ],
+        "orden_correcto": [
+            "Paleolítico",
+            "Mesolítico",
+            "Neolítico",
+            "Edad de los Metales"
+        ],
+        "informacion_complementaria": "El Paleolítico es el primer período de la prehistoria, seguido por el Mesolítico, el Neolítico y finalmente la Edad de los Metales. Estos períodos representan la evolución de los seres humanos y sus herramientas a lo largo del tiempo."
+    },
+    {
+        "tema": "Ordenar los períodos de la prehistoria",
+        "palabras_desordenadas": [
+            "Neolítico",
+            "Paleolítico",
+            "Edad de los Metales",
+            "Mesolítico"
+        ],
+        "orden_correcto": [
+            "Paleolítico",
+            "Mesolítico",
+            "Neolítico",
+            "Edad de los Metales"
+        ],
+        "informacion_complementaria": "El Paleolítico es el primer período de la prehistoria, seguido por el Mesolítico, el Neolítico y finalmente la Edad de los Metales. Estos períodos representan la evolución de los seres humanos y sus herramientas a lo largo del tiempo."
     }
 ]
