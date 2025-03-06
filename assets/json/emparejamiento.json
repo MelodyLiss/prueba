@@ -1,85 +1,194 @@
 [
     {
-        "tema": "Planetas y sus características",
+        "tema": "Hominización",
         "pares": [
             {
-                "concepto": "Mercurio",
-                "respuesta": "Planeta más cercano al sol"
+                "concepto": "Homo habilis",
+                "respuesta": "Primer homínido en fabricar herramientas de piedra"
             },
             {
-                "concepto": "Venus",
-                "respuesta": "Planeta con temperaturas extremadamente altas"
+                "concepto": "Homo erectus",
+                "respuesta": "Primer homínido en controlar el fuego y migrar fuera de África"
             },
             {
-                "concepto": "Tierra",
-                "respuesta": "Único planeta conocido con vida"
+                "concepto": "Homo neanderthalensis",
+                "respuesta": "Hábil cazador y adaptado a climas fríos"
             },
             {
-                "concepto": "Marte",
-                "respuesta": "Planeta rojo, conocido por sus casquetes polares"
+                "concepto": "Homo sapiens",
+                "respuesta": "Única especie humana que sigue existiendo en la actualidad"
+            },
+            {
+                "concepto": "Bipedismo",
+                "respuesta": "Rasgo clave en la evolución humana, permitió liberar las manos"
             }
         ]
     },
     {
-        "tema": "Clasificación de animales",
+        "tema": "Períodos de la Prehistoria",
         "pares": [
             {
-                "concepto": "León",
-                "respuesta": "Mamífero"
+                "concepto": "Paleolítico",
+                "respuesta": "Período de caza y recolección, herramientas de piedra tallada"
             },
             {
-                "concepto": "Rana",
-                "respuesta": "Anfibio"
+                "concepto": "Mesolítico",
+                "respuesta": "Transición entre caza-recolección y la domesticación de plantas y animales"
             },
             {
-                "concepto": "Águila",
-                "respuesta": "Aves"
+                "concepto": "Neolítico",
+                "respuesta": "Inicio de la agricultura y la vida sedentaria"
             },
             {
-                "concepto": "Cangrejo",
-                "respuesta": "Artrópodo"
+                "concepto": "Edad de los Metales",
+                "respuesta": "Uso del cobre, bronce y hierro en herramientas y armas"
             }
         ]
     },
     {
-        "tema": "Capitales y países",
+        "tema": "Descubrimientos tecnológicos",
         "pares": [
             {
-                "concepto": "Chile",
-                "respuesta": "Santiago"
+                "concepto": "Fuego",
+                "respuesta": "Permitió cocinar, protegerse y calentarse"
             },
             {
-                "concepto": "Francia",
-                "respuesta": "París"
+                "concepto": "Rueda",
+                "respuesta": "Facilitó el transporte y la agricultura"
             },
             {
-                "concepto": "Japón",
-                "respuesta": "Tokio"
+                "concepto": "Arco y flecha",
+                "respuesta": "Arma eficaz para la caza en el Mesolítico"
             },
             {
-                "concepto": "España",
-                "respuesta": "Madrid"
+                "concepto": "Alfarería",
+                "respuesta": "Fabricación de cerámica para almacenar alimentos"
+            },
+            {
+                "concepto": "Tejido",
+                "respuesta": "Creación de ropa con fibras naturales"
             }
         ]
     },
     {
-        "tema": "Clasificación de animales",
+        "tema": "Religión y creencias",
         "pares": [
             {
-                "concepto": "León",
-                "respuesta": "Mamífero"
+                "concepto": "Animismo",
+                "respuesta": "Creencia en que objetos y animales tienen espíritus"
             },
             {
-                "concepto": "Rana",
-                "respuesta": "Anfibio"
+                "concepto": "Chamanismo",
+                "respuesta": "Práctica espiritual con líderes religiosos llamados chamanes"
             },
             {
-                "concepto": "Águila",
-                "respuesta": "Aves"
+                "concepto": "Entierros rituales",
+                "respuesta": "Práctica de sepultar a los muertos con objetos simbólicos"
             },
             {
-                "concepto": "Cangrejo",
-                "respuesta": "Artrópodo"
+                "concepto": "Dioses primitivos",
+                "respuesta": "Figuras espirituales relacionadas con la naturaleza y la fertilidad"
+            }
+        ]
+    },
+    {
+        "tema": "Arte y cultura prehistórica",
+        "pares": [
+            {
+                "concepto": "Pinturas rupestres",
+                "respuesta": "Representaciones de animales y escenas de caza en cuevas"
+            },
+            {
+                "concepto": "Venus paleolíticas",
+                "respuesta": "Estatuillas femeninas asociadas a la fertilidad"
+            },
+            {
+                "concepto": "Grabados en piedra",
+                "respuesta": "Inscripciones talladas con significado simbólico"
+            },
+            {
+                "concepto": "Megalitos",
+                "respuesta": "Grandes estructuras de piedra con funciones religiosas"
+            }
+        ]
+    },
+    {
+        "tema": "Estructuras prehistóricas",
+        "pares": [
+            {
+                "concepto": "Dolmen",
+                "respuesta": "Tumba colectiva de grandes piedras"
+            },
+            {
+                "concepto": "Menhir",
+                "respuesta": "Gran piedra erguida con fines rituales"
+            },
+            {
+                "concepto": "Cromlech",
+                "respuesta": "Círculos de piedras con significado astronómico o ritual"
+            }
+        ]
+    },
+    {
+        "tema": "Modos de vida en la Prehistoria",
+        "pares": [
+            {
+                "concepto": "Nómadas",
+                "respuesta": "Grupos humanos que se desplazaban en busca de alimento"
+            },
+            {
+                "concepto": "Sedentarios",
+                "respuesta": "Grupos que se establecieron en aldeas agrícolas"
+            },
+            {
+                "concepto": "Trueque",
+                "respuesta": "Intercambio de bienes sin uso de dinero"
+            },
+            {
+                "concepto": "Cazadores-recolectores",
+                "respuesta": "Modo de vida basado en la caza y la recolección"
+            }
+        ]
+    },
+    {
+        "tema": "Comunicación prehistórica",
+        "pares": [
+            {
+                "concepto": "Lenguaje oral",
+                "respuesta": "Principal forma de comunicación entre los primeros humanos"
+            },
+            {
+                "concepto": "Señales de humo",
+                "respuesta": "Uso del fuego para transmitir mensajes a distancia"
+            },
+            {
+                "concepto": "Símbolos pictográficos",
+                "respuesta": "Primeros intentos de escritura en paredes y objetos"
+            }
+        ]
+    },
+    {
+        "tema": "Materiales usados en herramientas",
+        "pares": [
+            {
+                "concepto": "Piedra",
+                "respuesta": "Principal material de herramientas en el Paleolítico"
+            },
+            {
+                "concepto": "Madera",
+                "respuesta": "Utilizada para lanzas y estructuras"
+            },
+            {
+                "concepto": "Hueso",
+                "respuesta": "Usado para agujas, anzuelos y puntas de flecha"
+            },
+            {
+                "concepto": "Cobre",
+                "respuesta": "Primer metal trabajado por los humanos"
+            },
+            {
+                "concepto": "Bronce",
+                "respuesta": "Aleación de cobre y estaño usada en armas y herramientas"
             }
         ]
     }

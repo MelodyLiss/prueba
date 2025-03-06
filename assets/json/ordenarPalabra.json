@@ -16,51 +16,101 @@
         "informacion_complementaria": "El Paleolítico es el primer período de la prehistoria, seguido por el Mesolítico, el Neolítico y finalmente la Edad de los Metales. Estos períodos representan la evolución de los seres humanos y sus herramientas a lo largo del tiempo."
     },
     {
-        "tema": "Ordenar eventos históricos",
+        "tema": "Ordenar las etapas de la hominización",
         "palabras_desordenadas": [
-            "Revolución Francesa",
-            "Caída del Imperio Romano",
-            "Descubrimiento de América",
-            "Inicio de la Primera Guerra Mundial"
+            "Homo sapiens",
+            "Australopithecus",
+            "Homo habilis",
+            "Homo erectus",
+            "Homo neanderthalensis"
         ],
         "orden_correcto": [
-            "Caída del Imperio Romano",
-            "Revolución Francesa",
-            "Descubrimiento de América",
-            "Inicio de la Primera Guerra Mundial"
+            "Australopithecus",
+            "Homo habilis",
+            "Homo erectus",
+            "Homo neanderthalensis",
+            "Homo sapiens"
         ],
-        "informacion_complementaria": "La caída del Imperio Romano ocurrió en el siglo V, la Revolución Francesa a finales del siglo XVIII, el Descubrimiento de América en 1492 y el inicio de la Primera Guerra Mundial en 1914."
+        "informacion_complementaria": "La evolución humana comienza con el Australopithecus, seguido por Homo habilis, Homo erectus, Homo neanderthalensis y finalmente Homo sapiens, la única especie humana actual."
     },
     {
-        "tema": "Ordenar los períodos de la prehistoria",
+        "tema": "Ordenar hitos científicos",
         "palabras_desordenadas": [
-            "Neolítico",
-            "Paleolítico",
-            "Edad de los Metales",
-            "Mesolítico"
+            "Teoría de la evolución de Darwin",
+            "Invención de la imprenta",
+            "Descubrimiento de la penicilina",
+            "Llegada del hombre a la Luna"
         ],
         "orden_correcto": [
-            "Paleolítico",
-            "Mesolítico",
-            "Neolítico",
-            "Edad de los Metales"
+            "Invención de la imprenta",
+            "Teoría de la evolución de Darwin",
+            "Descubrimiento de la penicilina",
+            "Llegada del hombre a la Luna"
         ],
-        "informacion_complementaria": "El Paleolítico es el primer período de la prehistoria, seguido por el Mesolítico, el Neolítico y finalmente la Edad de los Metales. Estos períodos representan la evolución de los seres humanos y sus herramientas a lo largo del tiempo."
+        "informacion_complementaria": "La imprenta fue inventada en 1440, la teoría de la evolución se publicó en 1859, la penicilina se descubrió en 1928 y el hombre llegó a la Luna en 1969."
     },
     {
-        "tema": "Ordenar los períodos de la prehistoria",
+        "tema": "Ordenar los primeros asentamientos humanos",
         "palabras_desordenadas": [
-            "Neolítico",
-            "Paleolítico",
-            "Edad de los Metales",
-            "Mesolítico"
+            "Catalhüyük",
+            "Göbekli Tepe",
+            "Mesopotamia",
+            "Egipto"
         ],
         "orden_correcto": [
-            "Paleolítico",
-            "Mesolítico",
-            "Neolítico",
-            "Edad de los Metales"
+            "Göbekli Tepe",
+            "Catalhüyük",
+            "Mesopotamia",
+            "Egipto"
         ],
-        "informacion_complementaria": "El Paleolítico es el primer período de la prehistoria, seguido por el Mesolítico, el Neolítico y finalmente la Edad de los Metales. Estos períodos representan la evolución de los seres humanos y sus herramientas a lo largo del tiempo."
+        "informacion_complementaria": "Göbekli Tepe es el templo más antiguo conocido (alrededor de 9600 a.C.), Catalhüyük fue una de las primeras ciudades (7500 a.C.), Mesopotamia vio el surgimiento de la escritura (aprox. 3100 a.C.) y Egipto se consolidó como una gran civilización (aprox. 3000 a.C.)."
+    },
+    {
+        "tema": "Ordenar la evolución de las herramientas",
+        "palabras_desordenadas": [
+            "Herramientas de piedra tallada",
+            "Herramientas de hueso y asta",
+            "Uso de cobre",
+            "Herramientas de bronce"
+        ],
+        "orden_correcto": [
+            "Herramientas de piedra tallada",
+            "Herramientas de hueso y asta",
+            "Uso de cobre",
+            "Herramientas de bronce"
+        ],
+        "informacion_complementaria": "Las primeras herramientas fueron de piedra tallada en el Paleolítico, luego se usaron huesos y astas, el cobre fue el primer metal trabajado y finalmente el bronce permitió crear herramientas más resistentes."
+    },
+    {
+        "tema": "Ordenar los avances en la comunicación",
+        "palabras_desordenadas": [
+            "Lenguaje oral",
+            "Pinturas rupestres",
+            "Escritura cuneiforme",
+            "Alfabeto fenicio"
+        ],
+        "orden_correcto": [
+            "Lenguaje oral",
+            "Pinturas rupestres",
+            "Escritura cuneiforme",
+            "Alfabeto fenicio"
+        ],
+        "informacion_complementaria": "Los humanos comenzaron con el lenguaje oral, luego usaron pinturas rupestres, la escritura cuneiforme apareció en Mesopotamia (aprox. 3100 a.C.) y el alfabeto fenicio (siglo XI a.C.) fue la base de los alfabetos modernos."
+    },
+    {
+        "tema": "Ordenar los sistemas de vivienda en la prehistoria",
+        "palabras_desordenadas": [
+            "Cuevas",
+            "Palafitos",
+            "Cabañas de barro",
+            "Ciudades amuralladas"
+        ],
+        "orden_correcto": [
+            "Cuevas",
+            "Cabañas de barro",
+            "Palafitos",
+            "Ciudades amuralladas"
+        ],
+        "informacion_complementaria": "En el Paleolítico, los humanos vivían en cuevas, en el Neolítico comenzaron a construir cabañas de barro, luego surgieron los palafitos en zonas acuáticas y finalmente las ciudades amuralladas en la Edad de los Metales."
     }
 ]

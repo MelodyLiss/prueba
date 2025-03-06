@@ -1,32 +1,102 @@
 [
     {
-        "oracion": "El sol es una ____.",
-        "respuestaCorrecta": "estrella",
-        "informacionComplementaria": "El sol es una estrella porque es una enorme bola de gas que emite luz y calor debido a las reacciones nucleares en su núcleo."
+        "oracion": "El proceso de evolución humana se conoce como ___.",
+        "respuestaCorrecta": "hominización",
+        "informacionComplementaria": "La hominización es el proceso evolutivo que llevó a los primates a convertirse en seres humanos modernos."
     },
     {
-        "oracion": "La tierra es el ____ planeta del sistema solar.",
-        "respuestaCorrecta": "tercer",
-        "informacionComplementaria": "La Tierra es el tercer planeta desde el sol, lo que le permite tener las condiciones adecuadas para la vida."
+        "oracion": "El Homo ____ fue el primero en desarrollar herramientas de piedra más elaboradas.",
+        "respuestaCorrecta": "habilis",
+        "informacionComplementaria": "El Homo habilis es considerado el primer homínido en fabricar herramientas de piedra con mayor precisión."
     },
     {
-        "oracion": "El agua hierve a ____ grados Celsius.",
-        "respuestaCorrecta": "100",
-        "informacionComplementaria": "A nivel del mar, el agua hierve a 100°C (212°F). Este es un punto de referencia importante en la escala Celsius."
+        "oracion": "Los primeros humanos usaban el fuego para ____, protegerse y mejorar su calidad de vida.",
+        "respuestaCorrecta": "cocinar",
+        "informacionComplementaria": "El dominio del fuego permitió a los humanos cocinar alimentos, calentarse y ahuyentar depredadores."
     },
     {
-        "oracion": "La capital de Francia es ____.",
-        "respuestaCorrecta": "París",
-        "informacionComplementaria": "París es conocida como la Ciudad de la Luz y es uno de los centros culturales más importantes del mundo."
+        "oracion": "El Homo ____ fue el primero en migrar fuera de África.",
+        "respuestaCorrecta": "erectus",
+        "informacionComplementaria": "El Homo erectus se desplazó desde África hacia Asia y Europa, adaptándose a distintos entornos."
     },
     {
-        "oracion": "El elemento químico más abundante en el universo es el ____.",
-        "respuestaCorrecta": "hidrógeno",
-        "informacionComplementaria": "El hidrógeno es el elemento más abundante en el universo, constituyendo aproximadamente el 75% de toda la materia visible."
+        "oracion": "Las primeras herramientas de piedra tallada pertenecen al período ___.",
+        "respuestaCorrecta": "Paleolítico",
+        "informacionComplementaria": "Durante el Paleolítico, los humanos crearon herramientas de piedra para cazar, cortar y defenderse."
     },
     {
-        "oracion": "La velocidad de la luz es de aproximadamente ____ kilómetros por segundo.",
-        "respuestaCorrecta": "300000",
-        "informacionComplementaria": "La velocidad de la luz en el vacío es de aproximadamente 299,792 kilómetros por segundo, siendo la velocidad más rápida posible en el universo."
+        "oracion": "El Homo ____ es la única especie humana que sigue existiendo en la actualidad.",
+        "respuestaCorrecta": "sapiens",
+        "informacionComplementaria": "El Homo sapiens es la especie humana moderna, caracterizada por su inteligencia y capacidad de adaptación."
+    },
+    {
+        "oracion": "Los Homo neanderthalensis vivieron en regiones de Europa y ___.",
+        "respuestaCorrecta": "Asia",
+        "informacionComplementaria": "Los neandertales habitaron Europa y Asia occidental, adaptándose a climas fríos."
+    },
+    {
+        "oracion": "Los humanos prehistóricos representaban escenas de caza en el arte ___.",
+        "respuestaCorrecta": "rupestre",
+        "informacionComplementaria": "El arte rupestre se realizaba en cuevas y representaba animales y escenas de la vida cotidiana."
+    },
+    {
+        "oracion": "El período de la Prehistoria en el que surgió la agricultura se llama ___.",
+        "respuestaCorrecta": "Neolítico",
+        "informacionComplementaria": "El Neolítico marcó el comienzo de la agricultura y la sedentarización de los humanos."
+    },
+    {
+        "oracion": "Las primeras aldeas neolíticas se establecieron cerca de ___.",
+        "respuestaCorrecta": "ríos",
+        "informacionComplementaria": "Las aldeas neolíticas se construyeron cerca de ríos para garantizar acceso a agua para la agricultura y el consumo."
+    },
+    {
+        "oracion": "La principal técnica utilizada para fabricar herramientas en el Paleolítico fue la ___.",
+        "respuestaCorrecta": "talla",
+        "informacionComplementaria": "La talla de piedra consistía en golpear rocas para darles forma cortante o puntiaguda."
+    },
+    {
+        "oracion": "Los primeros enterramientos indican el inicio de las creencias en la ___.",
+        "respuestaCorrecta": "muerte",
+        "informacionComplementaria": "Los enterramientos en la Prehistoria muestran que los humanos creían en la vida después de la muerte."
+    },
+    {
+        "oracion": "El metal que permitió fabricar armas más resistentes fue el ___.",
+        "respuestaCorrecta": "hierro",
+        "informacionComplementaria": "El hierro fue utilizado en la última etapa de la Edad de los Metales, permitiendo herramientas y armas más eficaces."
+    },
+    {
+        "oracion": "El arco y la flecha mejoraron la caza en el período ___.",
+        "respuestaCorrecta": "Mesolítico",
+        "informacionComplementaria": "Durante el Mesolítico, se perfeccionaron armas como el arco y la flecha, mejorando la caza de animales."
+    },
+    {
+        "oracion": "Los monumentos megalíticos, como los dólmenes, tenían una función ___.",
+        "respuestaCorrecta": "funeraria",
+        "informacionComplementaria": "Los dólmenes eran tumbas colectivas construidas con grandes piedras en la Prehistoria."
+    },
+    {
+        "oracion": "Uno de los primeros metales utilizados junto con el cobre fue el ___.",
+        "respuestaCorrecta": "estaño",
+        "informacionComplementaria": "La aleación de cobre con estaño dio origen al bronce, un material más resistente y útil para herramientas."
+    },
+    {
+        "oracion": "El Neolítico permitió la especialización del trabajo debido al excedente de ___.",
+        "respuestaCorrecta": "alimentos",
+        "informacionComplementaria": "Con la agricultura, hubo un excedente de alimentos que permitió la especialización en otras actividades como la alfarería y la construcción."
+    },
+    {
+        "oracion": "Las primeras casas en el Neolítico se construían con barro y ___.",
+        "respuestaCorrecta": "paja",
+        "informacionComplementaria": "Las viviendas neolíticas estaban hechas de barro y paja, materiales abundantes y fáciles de trabajar."
+    },
+    {
+        "oracion": "Los primeros intercambios comerciales en la Prehistoria se basaban en el ___.",
+        "respuestaCorrecta": "trueque",
+        "informacionComplementaria": "El trueque consistía en el intercambio de bienes sin utilizar dinero, como pieles por herramientas o alimentos."
+    },
+    {
+        "oracion": "Uno de los inventos más importantes de la Edad de los Metales fue la ___.",
+        "respuestaCorrecta": "rueda",
+        "informacionComplementaria": "La rueda permitió mejorar el transporte y la agricultura, facilitando el desarrollo de la civilización."
     }
 ]

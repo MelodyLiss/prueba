@@ -1,46 +1,156 @@
 [
     {
-        "pregunta": "¿Cuál es el continente más grande del mundo?",
+        "pregunta": "¿En qué período de la Prehistoria aparecieron los primeros homínidos?",
         "opciones": [
-            "Asia",
-            "África",
-            "Europa",
-            "América"
+            "Paleolítico",
+            "Mesolítico",
+            "Neolítico",
+            "Edad de los Metales"
         ],
-        "respuesta_correcta": "Asia",
-        "informacion_complementaria": "Asia es el continente más grande en términos de superficie terrestre. Con más de 44 millones de km², es hogar de diversas culturas, religiones y economías importantes en el mundo."
+        "respuesta_correcta": "Paleolítico",
+        "informacion_complementaria": "El Paleolítico es el período más antiguo de la Prehistoria, donde surgieron los primeros homínidos y se desarrollaron las herramientas de piedra más primitivas."
     },
     {
-        "pregunta": "¿Quién fue el primer presidente de los Estados Unidos?",
+        "pregunta": "¿Qué descubrimiento marcó el inicio del Neolítico?",
         "opciones": [
-            "Abraham Lincoln",
-            "George Washington",
-            "Thomas Jefferson",
-            "John Adams"
+            "El fuego",
+            "La agricultura",
+            "Las herramientas de piedra",
+            "La domesticación del caballo"
         ],
-        "respuesta_correcta": "George Washington",
-        "informacion_complementaria": "George Washington fue el primer presidente de los Estados Unidos, sirviendo dos mandatos de 1789 a 1797. Fue uno de los padres fundadores y jugó un papel crucial en la independencia de los Estados Unidos."
+        "respuesta_correcta": "La agricultura",
+        "informacion_complementaria": "El inicio del Neolítico se caracterizó por el desarrollo de la agricultura, permitiendo que los humanos se establecieran en comunidades y dejaran de ser nómadas."
     },
     {
-        "pregunta": "¿Cuál es el océano más grande del mundo?",
+        "pregunta": "¿Cuál fue el primer metal utilizado por los humanos?",
         "opciones": [
-            "Atlántico",
-            "Índico",
-            "Ártico",
-            "Pacífico"
+            "Hierro",
+            "Bronce",
+            "Cobre",
+            "Oro"
         ],
-        "respuesta_correcta": "Pacífico",
-        "informacion_complementaria": "El océano Pacífico es el más grande, cubriendo aproximadamente el 30% de la superficie terrestre. Se extiende desde el Ártico hasta la Antártida y limita con Asia, América y Oceanía."
+        "respuesta_correcta": "Cobre",
+        "informacion_complementaria": "El cobre fue el primer metal trabajado por los humanos durante la Edad de los Metales, marcando el fin de la Edad de Piedra y permitiendo la fabricación de herramientas más resistentes."
     },
     {
-        "pregunta": "¿Qué gas es esencial para la respiración humana?",
+        "pregunta": "¿Qué tipo de herramientas utilizaban en el Paleolítico?",
         "opciones": [
-            "Oxígeno",
-            "Nitrógeno",
-            "Dióxido de carbono",
-            "Metano"
+            "De bronce",
+            "De piedra tallada",
+            "De hierro",
+            "De cobre"
         ],
-        "respuesta_correcta": "Oxígeno",
-        "informacion_complementaria": "El oxígeno es necesario para la respiración celular, que permite a las células de nuestro cuerpo producir energía. Es el gas que inhalamos y se encuentra en el aire en una proporción de aproximadamente 21%."
+        "respuesta_correcta": "De piedra tallada",
+        "informacion_complementaria": "Durante el Paleolítico, los humanos usaban herramientas de piedra tallada, como hachas y cuchillos, para cazar y procesar alimentos."
+    },
+    {
+        "pregunta": "¿Qué especie de homínido logró dominar el fuego?",
+        "opciones": [
+            "Homo sapiens",
+            "Homo habilis",
+            "Homo erectus",
+            "Neandertal"
+        ],
+        "respuesta_correcta": "Homo erectus",
+        "informacion_complementaria": "El Homo erectus fue el primer homínido en dominar el fuego, lo que le permitió cocinar alimentos, protegerse del frío y defenderse de depredadores."
+    },
+    {
+        "pregunta": "¿Qué actividad permitió la sedentarización de los humanos?",
+        "opciones": [
+            "La caza",
+            "La recolección",
+            "La agricultura",
+            "La alfarería"
+        ],
+        "respuesta_correcta": "La agricultura",
+        "informacion_complementaria": "Gracias a la agricultura, los seres humanos pudieron producir su propio alimento, estableciendo aldeas y dejando atrás la vida nómada."
+    },
+    {
+        "pregunta": "¿Qué tipo de sociedad predominaba en el Paleolítico?",
+        "opciones": [
+            "Tribus nómadas",
+            "Ciudades-estado",
+            "Monarquías",
+            "Imperios"
+        ],
+        "respuesta_correcta": "Tribus nómadas",
+        "informacion_complementaria": "Durante el Paleolítico, los humanos vivían en tribus nómadas que se desplazaban en busca de alimento y refugio."
+    },
+    {
+        "pregunta": "¿Qué arte prehistórico es conocido por sus pinturas en cuevas?",
+        "opciones": [
+            "Arte rupestre",
+            "Arte cerámico",
+            "Escultura en piedra",
+            "Orfebrería"
+        ],
+        "respuesta_correcta": "Arte rupestre",
+        "informacion_complementaria": "El arte rupestre consiste en pinturas y grabados en las paredes de cuevas, representando animales y escenas de caza."
+    },
+    {
+        "pregunta": "¿Cuál fue uno de los primeros animales domesticados?",
+        "opciones": [
+            "Caballo",
+            "Perro",
+            "Vaca",
+            "Gato"
+        ],
+        "respuesta_correcta": "Perro",
+        "informacion_complementaria": "El perro fue uno de los primeros animales domesticados por los humanos, ayudándolos en la caza y brindándoles protección."
+    },
+    {
+        "pregunta": "¿Cómo obtenían alimento los humanos en el Paleolítico?",
+        "opciones": [
+            "Caza y recolección",
+            "Agricultura",
+            "Ganadería",
+            "Pesca intensiva"
+        ],
+        "respuesta_correcta": "Caza y recolección",
+        "informacion_complementaria": "Los humanos del Paleolítico obtenían su alimento cazando animales y recolectando frutos y raíces."
+    },
+    {
+        "pregunta": "¿Qué caracterizaba a la religión en la Prehistoria?",
+        "opciones": [
+            "Politeísmo y culto a la naturaleza",
+            "Monoteísmo estricto",
+            "Ateísmo",
+            "Culto a reyes"
+        ],
+        "respuesta_correcta": "Politeísmo y culto a la naturaleza",
+        "informacion_complementaria": "Las primeras creencias religiosas estaban relacionadas con la naturaleza y los fenómenos naturales, y se practicaba el culto a diferentes dioses."
+    },
+    {
+        "pregunta": "¿Qué invento permitió el almacenamiento de alimentos?",
+        "opciones": [
+            "La cerámica",
+            "El tejido",
+            "El arco y flecha",
+            "El fuego"
+        ],
+        "respuesta_correcta": "La cerámica",
+        "informacion_complementaria": "El desarrollo de la cerámica permitió a los humanos almacenar agua y alimentos, mejorando su calidad de vida."
+    },
+    {
+        "pregunta": "¿En qué periodo surgieron las primeras aldeas?",
+        "opciones": [
+            "Paleolítico",
+            "Mesolítico",
+            "Neolítico",
+            "Edad del Hierro"
+        ],
+        "respuesta_correcta": "Neolítico",
+        "informacion_complementaria": "Durante el Neolítico, con la agricultura y la ganadería, surgieron las primeras aldeas estables."
+    },
+    {
+        "pregunta": "¿Qué material se utilizó primero en la Edad de los Metales?",
+        "opciones": [
+            "Hierro",
+            "Cobre",
+            "Oro",
+            "Plata"
+        ],
+        "respuesta_correcta": "Cobre",
+        "informacion_complementaria": "El cobre fue el primer metal trabajado por los humanos, seguido del bronce y el hierro."
     }
 ]

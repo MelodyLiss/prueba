@@ -1,29 +1,54 @@
 {
     "preguntas": [
         {
-            "pregunta": "¿La Tierra es plana?",
+            "pregunta": "¿El Homo erectus fue el primero en salir de África?",
+            "respuestaCorrecta": true,
+            "informacionComplementaria": "El Homo erectus fue la primera especie de homínido en expandirse fuera de África, colonizando Eurasia hace aproximadamente 1,8 millones de años."
+        },
+        {
+            "pregunta": "¿El Paleolítico se caracteriza por el inicio de la agricultura?",
             "respuestaCorrecta": false,
-            "informacionComplementaria": "La Tierra es un planeta esférico que gira alrededor del Sol."
+            "informacionComplementaria": "El Paleolítico se basó en una economía depredadora de caza, pesca y recolección. La agricultura surgió en el Neolítico."
         },
         {
-            "pregunta": "¿El agua hierve a 100 grados Celsius?",
-            "respuestaCorrecta": true,
-            "informacionComplementaria": "A nivel del mar, el agua hierve a 100°C (212°F)."
-        },
-        {
-            "pregunta": "¿Los humanos tienen 206 huesos en el cuerpo?",
-            "respuestaCorrecta": true,
-            "informacionComplementaria": "El esqueleto humano adulto está compuesto por 206 huesos."
-        },
-        {
-            "pregunta": "¿La luz viaja más rápido que el sonido?",
-            "respuestaCorrecta": true,
-            "informacionComplementaria": "La luz viaja a aproximadamente 299,792 km/s, mientras que el sonido viaja a 343 m/s en el aire."
-        },
-        {
-            "pregunta": "¿El sol gira alrededor de la Tierra?",
+            "pregunta": "¿Los neandertales desaparecieron antes de la llegada del Homo sapiens a Europa?",
             "respuestaCorrecta": false,
-            "informacionComplementaria": "La Tierra gira alrededor del Sol, no al revés. Este es un principio fundamental de la astronomía."
+            "informacionComplementaria": "Los neandertales coexistieron con Homo sapiens en Europa durante miles de años antes de extinguirse hace unos 40,000 años."
+        },
+        {
+            "pregunta": "¿El Homo habilis ya fabricaba herramientas complejas de metal?",
+            "respuestaCorrecta": false,
+            "informacionComplementaria": "El Homo habilis solo fabricaba herramientas rudimentarias de piedra. La metalurgia apareció en la Edad de los Metales, miles de años después."
+        },
+        {
+            "pregunta": "¿El Mesolítico es una etapa de transición entre el Paleolítico y el Neolítico?",
+            "respuestaCorrecta": true,
+            "informacionComplementaria": "El Mesolítico es un período intermedio en el que las sociedades empezaron a desarrollar nuevas técnicas de subsistencia antes de adoptar la agricultura."
+        },
+        {
+            "pregunta": "¿Todas las especies del género Homo evolucionaron a partir del Homo sapiens?",
+            "respuestaCorrecta": false,
+            "informacionComplementaria": "El Homo sapiens es una especie del género Homo, pero otras especies como Homo erectus y Homo neanderthalensis evolucionaron de ancestros comunes."
+        },
+        {
+            "pregunta": "¿La domesticación de animales comenzó en el Paleolítico?",
+            "respuestaCorrecta": false,
+            "informacionComplementaria": "La domesticación de animales ocurrió en el Neolítico, cuando los humanos empezaron a criar especies como ovejas, cabras y perros."
+        },
+        {
+            "pregunta": "¿El Homo sapiens es la única especie humana que ha existido?",
+            "respuestaCorrecta": false,
+            "informacionComplementaria": "Varias especies del género Homo han existido, como Homo habilis, Homo erectus y Homo neanderthalensis, aunque actualmente solo sobrevive Homo sapiens."
+        },
+        {
+            "pregunta": "¿El arte rupestre solo tenía un propósito decorativo?",
+            "respuestaCorrecta": false,
+            "informacionComplementaria": "El arte rupestre tenía propósitos rituales, simbólicos y educativos, reflejando creencias, comunicación y estrategias de caza."
+        },
+        {
+            "pregunta": "¿El cobre fue el primer metal utilizado en la Prehistoria?",
+            "respuestaCorrecta": true,
+            "informacionComplementaria": "El cobre fue el primer metal trabajado por los humanos en la Edad de los Metales, antes del bronce y el hierro."
         }
     ]
 }
