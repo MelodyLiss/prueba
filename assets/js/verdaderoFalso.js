@@ -1,12 +1,19 @@
 // main.js
 
-import { siguientePregunta, mostrarPuntaje } from './main.js';
+import { siguientePregunta, mostrarPuntaje, registrarPreguntaFallada } from './main.js';
 
 let preguntaActual = null;
+let tipoPreguntaActual = null;
 
-export const inicializarVerdaderoFalso = (pregunta) => {
+export const inicializarVerdaderoFalso = (pregunta, tipo) => {
+    if (!pregunta) {
+        console.error('La pregunta es undefined');
+        return;
+    }
+
     const contenedorPregunta = document.getElementById('question-container');
     preguntaActual = pregunta;
+    tipoPreguntaActual = tipo;
 
     const preguntaHTML = `
         <div class="verdadero-falso-container">
@@ -48,6 +55,9 @@ window.verificarRespuestaVerdaderoFalso = (respuestaSeleccionada) => {
 
     if (esCorrecta) {
         mostrarPuntaje();
+    } else {
+        // Registrar la pregunta fallada
+        registrarPreguntaFallada(tipoPreguntaActual, respuestaSeleccionada);
     }
 
     document.getElementById('next-button').style.display = 'block';

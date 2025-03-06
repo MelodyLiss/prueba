@@ -1,8 +1,9 @@
-import { siguientePregunta, mostrarPuntaje } from './main.js';
+import { siguientePregunta, mostrarPuntaje, registrarPreguntaFallada } from './main.js';
 
 let preguntaActual = null;
+let tipoPreguntaActual = null;
 
-export const inicializarAlternativas = (pregunta) => {
+export const inicializarAlternativas = (pregunta, tipo) => {
     if (!pregunta) {
         console.error('La pregunta es undefined');
         return;
@@ -10,6 +11,7 @@ export const inicializarAlternativas = (pregunta) => {
 
     const contenedorPregunta = document.getElementById('question-container');
     preguntaActual = pregunta;
+    tipoPreguntaActual = tipo;
 
     const preguntaHTML = `
         <div class="alternativas-container">
@@ -55,6 +57,9 @@ window.verificarRespuestaAlternativas = (indexSeleccionado) => {
 
     if (esCorrecta) {
         mostrarPuntaje();
+    } else {
+        // Registrar la pregunta fallada
+        registrarPreguntaFallada(tipoPreguntaActual, indexSeleccionado);
     }
 
     document.getElementById('next-button').style.display = 'block';

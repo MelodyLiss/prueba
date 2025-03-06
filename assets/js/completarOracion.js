@@ -1,6 +1,7 @@
-import { siguientePregunta, mostrarPuntaje } from './main.js';
+import { siguientePregunta, mostrarPuntaje, registrarPreguntaFallada } from './main.js';
 
 let preguntaActual = null;
+let tipoPreguntaActual = null;
 
 // Función para normalizar texto (eliminar acentos y convertir a minúsculas)
 const normalizarTexto = (texto) => {
@@ -11,9 +12,15 @@ const normalizarTexto = (texto) => {
         .trim();
 };
 
-export const inicializarCompletarOracion = (pregunta) => {
+export const inicializarCompletarOracion = (pregunta, tipo) => {
+    if (!pregunta) {
+        console.error('La pregunta es undefined');
+        return;
+    }
+
     const contenedorPregunta = document.getElementById('question-container');
     preguntaActual = pregunta;
+    tipoPreguntaActual = tipo;
 
     const preguntaHTML = `
         <div class="completar-oracion-container">
@@ -54,7 +61,10 @@ window.verificarRespuestaCompletarOracion = () => {
     `;
 
     if (esCorrecta) {
-        mostrarPuntaje();
+        mostrarPuntaje(tipoPreguntaActual);
+    } else {
+        // Registrar la pregunta fallada
+        registrarPreguntaFallada(tipoPreguntaActual, preguntaActual.index);
     }
 
     respuestaInput.disabled = true;

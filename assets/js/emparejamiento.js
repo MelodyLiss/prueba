@@ -1,5 +1,7 @@
-import { siguientePregunta, mostrarPuntaje } from './main.js';
+import { siguientePregunta, mostrarPuntaje, registrarPreguntaFallada } from './main.js';
 
+let paresCorrectos = 0;
+let tipoPreguntaActual = '';
 let preguntaActual = null;
 
 // Función para desordenar un array
@@ -12,37 +14,41 @@ const desordenarArray = (array) => {
     return nuevoArray;
 };
 
-export const inicializarEmparejamiento = (pregunta) => {
-    const contenedorPregunta = document.getElementById('question-container');
-    preguntaActual = pregunta;
+export const inicializarEmparejamiento = (pregunta, tipo) => {
+    tipoPreguntaActual = tipo;
+    paresCorrectos = 0;
+    preguntaActual = pregunta;  // Guardamos la pregunta actual
+    
+    if (!pregunta || !pregunta.pares) {
+        console.error('Pregunta de emparejamiento inválida');
+        return;
+    }
 
-    // Desordenar los pares para los conceptos
-    const paresDesordenados = desordenarArray(pregunta.pares);
-
-    const preguntaHTML = `
+    const container = document.getElementById('question-container');
+    container.innerHTML = `
         <div class="emparejamiento-container">
             <h2 class="tema-titulo">Emparejamiento</h2>
             <div class="pregunta-texto">${pregunta.tema}</div>
             <div class="conceptos-container">
-                ${paresDesordenados.map((par, index) => `
+                ${pregunta.pares.map((par, index) => `
                     <div class="concepto-item">
                         <div class="concepto-texto">${par.concepto}</div>
-                        <div class="respuesta-slot" draggable="false" data-index="${pregunta.pares.indexOf(par)}"></div>
+                        <div class="respuesta-slot" draggable="false" data-index="${index}"></div>
                     </div>
                 `).join('')}
             </div>
             <div class="respuestas-container">
-                ${pregunta.pares.map((par, index) => `
-                    <div class="respuesta-item" draggable="true" data-index="${index}">
+                ${desordenarArray(pregunta.pares).map((par, index) => `
+                    <div class="respuesta-item" draggable="true" data-index="${pregunta.pares.indexOf(par)}">
                         ${par.respuesta}
                     </div>
                 `).join('')}
             </div>
             <button class="confirmar-btn" onclick="verificarEmparejamiento()">Confirmar</button>
             <div id="resultado" class="resultado"></div>
+            <div id="informacion" class="informacion-complementaria"></div>
         </div>
     `;
-    contenedorPregunta.innerHTML = preguntaHTML;
 
     // Configurar eventos de drag and drop
     const respuestas = document.querySelectorAll('.respuesta-item');
@@ -74,19 +80,25 @@ export const inicializarEmparejamiento = (pregunta) => {
             e.preventDefault();
             slot.classList.remove('drag-over');
             const respuesta = document.querySelector('.dragging');
-            if (respuesta && !slot.hasChildNodes()) {
+            
+            if (respuesta) {
+                // Si el slot ya tiene una respuesta, devolverla al contenedor de respuestas
+                if (slot.hasChildNodes()) {
+                    const respuestaExistente = slot.firstChild;
+                    document.querySelector('.respuestas-container').appendChild(respuestaExistente);
+                }
+                
                 slot.appendChild(respuesta);
                 respuesta.style.display = 'block';
             }
         });
     });
-}
+};
 
 window.verificarEmparejamiento = () => {
-    if (!preguntaActual) return;
-
     const slots = document.querySelectorAll('.respuesta-slot');
     let emparejamientosCorrectos = 0;
+    let emparejamientosIncorrectos = [];
 
     slots.forEach((slot, index) => {
         const respuesta = slot.firstChild;
@@ -95,24 +107,42 @@ window.verificarEmparejamiento = () => {
             const esCorrecto = respuestaIndex === parseInt(slot.dataset.index);
             
             slot.classList.add(esCorrecto ? 'correcto' : 'incorrecto');
-            if (esCorrecto) emparejamientosCorrectos++;
+            if (esCorrecto) {
+                emparejamientosCorrectos++;
+            } else {
+                emparejamientosIncorrectos.push(index);
+            }
         }
     });
 
     const resultadoDiv = document.getElementById('resultado');
+    const informacionDiv = document.getElementById('informacion');
+
     resultadoDiv.innerHTML = `
         <div class="resultado">
-            ${emparejamientosCorrectos} de ${preguntaActual.pares.length} pares correctos
+            ${emparejamientosCorrectos} de ${slots.length} pares correctos
+        </div>
+    `;
+
+    informacionDiv.innerHTML = `
+        <div class="informacion-complementaria">
+            ${preguntaActual.informacion_complementaria}
         </div>
     `;
 
     if (emparejamientosCorrectos > 0) {
         // Cada par correcto otorga 0.5 puntos
-        const puntosGanados = emparejamientosCorrectos * 0.5;
-        mostrarPuntaje(puntosGanados);
+        mostrarPuntaje(tipoPreguntaActual, emparejamientosCorrectos);
+    }
+
+    if (emparejamientosIncorrectos.length > 0) {
+        // Registrar las preguntas falladas
+        emparejamientosIncorrectos.forEach(index => {
+            registrarPreguntaFallada(tipoPreguntaActual, index);
+        });
     }
 
     document.querySelector('.confirmar-btn').disabled = true;
     document.getElementById('next-button').style.display = 'block';
     document.getElementById('next-button').onclick = siguientePregunta;
-}
+};

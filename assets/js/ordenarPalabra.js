@@ -1,28 +1,38 @@
-import { siguientePregunta, mostrarPuntaje } from './main.js';
+import { siguientePregunta, registrarPreguntaFallada, mostrarPuntaje } from './main.js';
 
+let tipoPreguntaActual = '';
 let preguntaActual = null;
 
-export const inicializarOrdenarPalabra = (pregunta) => {
-    if (!pregunta || !pregunta.palabras_desordenadas || !pregunta.orden_correcto) {
-        console.error('La pregunta o sus propiedades son undefined');
+// Función para desordenar un array
+const desordenarArray = (array) => {
+    const nuevoArray = [...array];
+    for (let i = nuevoArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [nuevoArray[i], nuevoArray[j]] = [nuevoArray[j], nuevoArray[i]];
+    }
+    return nuevoArray;
+};
+
+export const inicializarOrdenarPalabra = (pregunta, tipo) => {
+    tipoPreguntaActual = tipo;
+    preguntaActual = pregunta;
+
+    // Validar que la pregunta tenga las propiedades necesarias
+    if (!pregunta || !pregunta.palabras_desordenadas || !Array.isArray(pregunta.palabras_desordenadas) || 
+        !pregunta.orden_correcto || !Array.isArray(pregunta.orden_correcto) || 
+        pregunta.palabras_desordenadas.length === 0) {
+        console.error('Pregunta de ordenar palabra inválida:', pregunta);
         return;
     }
 
-    const contenedorPregunta = document.getElementById('question-container');
-    preguntaActual = pregunta;
-
-    const preguntaHTML = `
+    const questionContainer = document.getElementById('question-container');
+    questionContainer.innerHTML = `
         <div class="ordenar-palabra-container">
-            <h2 class="tema-titulo">Ordenar Palabras</h2>
+            <h2 class="tema-titulo">Ordenar Palabra</h2>
             <div class="pregunta-texto">${pregunta.tema}</div>
-            <div class="palabras-ordenadas">
-                ${pregunta.orden_correcto.map((_, index) => `
-                    <div class="palabra-slot" draggable="false" data-index="${index}"></div>
-                `).join('')}
-            </div>
-            <div class="palabras-desordenadas">
-                ${pregunta.palabras_desordenadas.map((palabra, index) => `
-                    <div class="palabra-item" draggable="true" data-index="${index}">
+            <div class="palabras-container">
+                ${desordenarArray(pregunta.palabras_desordenadas).map((palabra, index) => `
+                    <div class="palabra-item" draggable="true" data-index="${pregunta.orden_correcto.indexOf(palabra)}">
                         ${palabra}
                     </div>
                 `).join('')}
@@ -32,14 +42,14 @@ export const inicializarOrdenarPalabra = (pregunta) => {
             <div id="informacion" class="informacion-complementaria"></div>
         </div>
     `;
-    contenedorPregunta.innerHTML = preguntaHTML;
 
     // Configurar eventos de drag and drop
     const palabras = document.querySelectorAll('.palabra-item');
-    const slots = document.querySelectorAll('.palabra-slot');
+    const palabrasContainer = document.querySelector('.palabras-container');
 
     palabras.forEach(palabra => {
-        palabra.addEventListener('dragstart', () => {
+        palabra.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', palabra.dataset.index);
             palabra.classList.add('dragging');
         });
 
@@ -48,52 +58,62 @@ export const inicializarOrdenarPalabra = (pregunta) => {
         });
     });
 
-    slots.forEach(slot => {
-        slot.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            if (!slot.hasChildNodes()) {
-                slot.classList.add('drag-over');
-            }
-        });
+    palabrasContainer.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const dragging = document.querySelector('.dragging');
+        if (!dragging) return;
 
-        slot.addEventListener('dragleave', () => {
-            slot.classList.remove('drag-over');
-        });
-
-        slot.addEventListener('drop', (e) => {
-            e.preventDefault();
-            slot.classList.remove('drag-over');
-            const palabra = document.querySelector('.dragging');
-            
-            if (palabra) {
-                // Si el slot ya tiene una palabra, devolverla al contenedor de palabras desordenadas
-                if (slot.hasChildNodes()) {
-                    const palabraExistente = slot.firstChild;
-                    document.querySelector('.palabras-desordenadas').appendChild(palabraExistente);
-                }
-                
-                slot.appendChild(palabra);
-                palabra.style.display = 'block';
-            }
-        });
+        const afterElement = getDragAfterElement(palabrasContainer, e.clientY);
+        if (afterElement) {
+            palabrasContainer.insertBefore(dragging, afterElement);
+        } else {
+            palabrasContainer.appendChild(dragging);
+        }
     });
-}
+
+    palabrasContainer.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const dragging = document.querySelector('.dragging');
+        if (!dragging) return;
+
+        const afterElement = getDragAfterElement(palabrasContainer, e.clientY);
+        if (afterElement) {
+            palabrasContainer.insertBefore(dragging, afterElement);
+        } else {
+            palabrasContainer.appendChild(dragging);
+        }
+    });
+};
+
+const getDragAfterElement = (container, y) => {
+    const draggableElements = [...container.querySelectorAll('.palabra-item:not(.dragging)')];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+};
 
 window.verificarOrdenarPalabra = () => {
-    if (!preguntaActual) return;
-
-    const slots = document.querySelectorAll('.palabra-slot');
+    const palabras = document.querySelectorAll('.palabra-item');
     let palabrasCorrectas = 0;
+    let palabrasIncorrectas = [];
 
-    slots.forEach((slot, index) => {
-        const palabra = slot.firstChild;
-        if (palabra) {
-            const palabraIndex = parseInt(palabra.dataset.index);
-            const palabraSeleccionada = preguntaActual.palabras_desordenadas[palabraIndex];
-            const esCorrecto = palabraSeleccionada === preguntaActual.orden_correcto[index];
-            
-            slot.classList.add(esCorrecto ? 'correcto' : 'incorrecto');
-            if (esCorrecto) palabrasCorrectas++;
+    palabras.forEach((palabra, index) => {
+        const indiceCorrecto = parseInt(palabra.dataset.index);
+        const esCorrecto = indiceCorrecto === index;
+        
+        palabra.classList.add(esCorrecto ? 'correcto' : 'incorrecto');
+        if (esCorrecto) {
+            palabrasCorrectas++;
+        } else {
+            palabrasIncorrectas.push(index);
         }
     });
 
@@ -102,23 +122,27 @@ window.verificarOrdenarPalabra = () => {
 
     resultadoDiv.innerHTML = `
         <div class="resultado">
-            ${palabrasCorrectas} de ${preguntaActual.orden_correcto.length} palabras correctas
+            ${palabrasCorrectas} de ${palabras.length} palabras en orden correcto
         </div>
     `;
 
-    informacionDiv.innerHTML = `
-        <div class="informacion-complementaria">
-            ${preguntaActual.informacion_complementaria}
-        </div>
-    `;
+    if (preguntaActual && preguntaActual.informacion_complementaria) {
+        informacionDiv.innerHTML = `
+            <div class="informacion-complementaria">
+                ${preguntaActual.informacion_complementaria}
+            </div>
+        `;
+    }
 
     if (palabrasCorrectas > 0) {
-        // Cada palabra correcta otorga 0.5 puntos
-        const puntosGanados = palabrasCorrectas * 0.5;
-        mostrarPuntaje(puntosGanados);
+        mostrarPuntaje(tipoPreguntaActual, palabrasCorrectas);
+    }
+
+    if (palabrasIncorrectas.length > 0) {
+        registrarPreguntaFallada(tipoPreguntaActual, preguntaActual.index);
     }
 
     document.querySelector('.confirmar-btn').disabled = true;
     document.getElementById('next-button').style.display = 'block';
     document.getElementById('next-button').onclick = siguientePregunta;
-} 
+}; 

@@ -413,159 +413,78 @@ button:hover {
 
 /* Estilos para ordenar palabras */
 .ordenar-palabra-container {
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
-.palabras-ordenadas {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 40px;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 12px;
-}
-
-.palabra-slot {
-    padding: 15px;
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
-}
-
-.palabra-slot.drag-over {
-    background-color: #e3f2fd;
-    border-color: #2196F3;
-    border-style: solid;
-}
-
-.palabras-desordenadas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 12px;
-}
-
-.palabra-item {
-    padding: 10px;
-    margin: 5px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: move;
-    user-select: none;
-}
-
-.orden-slot {
-    min-height: 40px;
-    border: 2px dashed #ccc;
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.drag-over {
-    background-color: #e0e0e0;
-    border-color: #999;
-}
-
-/* Estilos para palabras correctas e incorrectas */
-.palabra-item.correcto {
-    background-color: #90EE90;
-    border-color: #32CD32;
-}
-
-.palabra-item.incorrecto {
-    background-color: #FFB6C1;
-    border-color: #FF69B4;
-}
-
-.orden-slot.correcto {
-    border-color: #32CD32;
-    background-color: #F0FFF0;
-}
-
-.orden-slot.incorrecto {
-    border-color: #FF69B4;
-    background-color: #FFF0F5;
-}
-
-/* Estilos para el contenedor de palabras */
 .palabras-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 15px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-/* Estilos para el contenedor de orden */
-.orden-container {
-    display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 15px;
-    background-color: #fff;
+    margin: 20px 0;
+    min-height: 100px;
+    padding: 20px;
+    background-color: #f5f5f5;
     border-radius: 8px;
-    margin-bottom: 20px;
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.orden-slot {
-    min-height: 40px;
-    border: 2px dashed #ccc;
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
+.palabra-item {
     background-color: #fff;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Estilos para el resultado */
-.resultado {
-    margin-top: 20px;
-    padding: 10px;
+    padding: 15px 20px;
     border-radius: 5px;
+    cursor: move;
+    user-select: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
     text-align: center;
-    font-weight: bold;
+    font-size: 18px;
 }
 
-/* Estilos para el botón de confirmar */
-.confirmar-btn {
-    padding: 10px 20px;
+.palabra-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.palabra-item.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+    transform: scale(1.05);
+}
+
+.palabra-item.correcto {
     background-color: #4CAF50;
+    color: white;
+}
+
+.palabra-item.incorrecto {
+    background-color: #f44336;
+    color: white;
+}
+
+.confirmar-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #2196F3;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.confirmar-btn:hover {
+    background-color: #1976D2;
 }
 
 .confirmar-btn:disabled {
-    background-color: #cccccc;
+    background-color: #ccc;
     cursor: not-allowed;
-}
-
-.confirmar-btn:hover:not(:disabled) {
-    background-color: #45a049;
 }
 
 /* Estilos para la pantalla de inicio */
@@ -671,40 +590,56 @@ button:hover {
 /* Estilos para la pantalla de fin de juego */
 .fin-juego {
     text-align: center;
-    padding: 40px;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    margin: 20px auto;
+    padding: 2rem;
     max-width: 600px;
+    margin: 0 auto;
 }
 
 .fin-juego h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    font-size: 28px;
+    color: #333;
+    margin-bottom: 1.5rem;
 }
 
 .fin-juego p {
-    color: #34495e;
-    font-size: 18px;
-    margin: 10px 0;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #555;
 }
 
-.fin-juego button {
-    margin-top: 20px;
-    padding: 12px 30px;
-    font-size: 18px;
-    background-color: #3498db;
-    color: white;
+.botones-fin-juego {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-reiniciar, .btn-repasar {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.fin-juego button:hover {
-    background-color: #2980b9;
+.btn-reiniciar {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-repasar {
+    background-color: #FF9800;
+    color: white;
+}
+
+.btn-reiniciar:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+}
+
+.btn-repasar:hover {
+    background-color: #F57C00;
+    transform: translateY(-2px);
 }
 
 /* Estilos para emparejamiento */
